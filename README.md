@@ -39,6 +39,7 @@ Preview or change a preset at `https://ui.shadcn.com/create?preset=<code>`.
 | Path | What it is |
 | --- | --- |
 | `VISION.md` | What this repo is for. |
+| `SECURITY.md` | How to report a problem, the trust model, and the rules held here. |
 | `docs/theme-contract.md` | What every theme must contain. |
 | `themes/<slug>/theme.json` | The preset code, its decoded values, fonts and install command. `pickable` controls step 6. |
 | `themes/<slug>/DESIGN.md` | The design contract in the [DESIGN.md format](https://www.npmjs.com/package/@google/design.md): tokens in front matter, usage rules in prose. |
