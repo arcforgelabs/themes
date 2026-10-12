@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Pick a catalog theme for a repo that has no design system.
+
+Usage: scripts/pick <repo-name>      e.g. scripts/pick arcforgelabs/field
+
+The pick is deterministic: the same repo name always gets the same theme, so
+two agents working on one repo agree. Only themes with "pickable": true count.
+"""
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+if len(sys.argv) != 2:
+    sys.exit(__doc__)
+themes = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(ROOT.glob("themes/*/theme.json"))]
+themes = [t for t in themes if t.get("pickable")]
+if not themes:
+    sys.exit("No pickable themes in themes/*/theme.json")
+index = int(hashlib.sha256(sys.argv[1].strip().lower().encode()).hexdigest(), 16) % len(themes)
+theme = themes[index]
+print(json.dumps({k: theme[k] for k in ("slug", "name", "preset", "install")}, indent=2))

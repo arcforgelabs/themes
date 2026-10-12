@@ -1,0 +1,43 @@
+{
+  "name": "Maia Rose",
+  "slug": "maia-rose",
+  "preset": "b4W4Iv9tfn",
+  "base": "radix",
+  "values": {
+    "menuColor": "inverted-translucent",
+    "menuAccent": "subtle",
+    "radius": "large",
+    "font": "ibm-plex-sans",
+    "iconLibrary": "remixicon",
+    "theme": "rose",
+    "baseColor": "stone",
+    "style": "maia",
+    "chartColor": "stone",
+    "fontHeading": "merriweather"
+  },
+  "fonts": {
+    "sans": {
+      "family": "IBM Plex Sans",
+      "generic": "sans-serif",
+      "variable": "--font-sans",
+      "package": "@fontsource-variable/ibm-plex-sans"
+    },
+    "heading": {
+      "family": "Merriweather",
+      "generic": "serif",
+      "variable": "--font-heading",
+      "package": "@fontsource-variable/merriweather"
+    }
+  },
+  "install": "npx shadcn@latest apply --preset b4W4Iv9tfn",
+  "create": "https://ui.shadcn.com/create?preset=b4W4Iv9tfn",
+  "generated": "2026-10-12T03:15:47Z",
+  "pickable": true,
+  "summary": "Soft and rounded. Stone neutrals, one rose accent, Merriweather headings over IBM Plex Sans, Remix icons.",
+  "mirror": "Claude Design System artifact 'Maia Rose' (a copy for Claude harnesses; this repo is the source).",
+  "contrastExceptions": {
+    "light:muted-foreground/muted": "4.39:1. DESIGN.md: put muted-foreground text on background or card, not on a muted fill.",
+    "light:sidebar-primary-foreground/sidebar-primary": "4.12:1. DESIGN.md: sidebar-primary marks the active item; it is not a fill behind text.",
+    "dark:sidebar-primary-foreground/sidebar-primary": "3.42:1. Same rule as light."
+  }
+}
