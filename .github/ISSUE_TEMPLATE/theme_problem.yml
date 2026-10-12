@@ -1,0 +1,30 @@
+name: Theme problem
+description: Report a wrong value, a contrast failure, or an install that does not work.
+title: "[Problem] "
+body:
+  - type: input
+    id: theme
+    attributes:
+      label: Theme
+      placeholder: "maia-rose"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - Wrong or outdated value
+        - Text contrast or legibility
+        - Install command fails
+        - DESIGN.md rule is unclear or wrong
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, what you expected, and the command or page where you saw it. Remove tokens and private URLs from any output.
+    validations:
+      required: true

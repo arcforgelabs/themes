@@ -7,3 +7,11 @@ This repo is the one place agents and people go to choose a look. A theme here i
 Themes start from shadcn/ui presets and stay close to them, so upstream improvements flow in with one regeneration. The catalog stays small and curated: a few themes we would be proud to ship, not a gallery.
 
 Finished feels like this: an agent starts a new project, reads one README, and the project looks like Arc Forge made it on purpose.
+
+## What we will not merge
+
+- A theme that does not start from a shadcn/ui preset.
+- Hand-edited generated values. Change the preset and regenerate.
+- Install commands, scripts or packages beyond `npx shadcn` and this repo's own files.
+- Unreleased client or brand work. That belongs in a private repo.
+- Near-duplicates of a theme already in the catalog.
