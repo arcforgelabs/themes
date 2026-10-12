@@ -1,0 +1,31 @@
+name: Propose a theme
+description: Suggest a new theme for the catalog.
+title: "[Theme] "
+labels: ["theme"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The catalog stays small and curated. Proposals are judged against
+        [VISION.md](https://github.com/arcforgelabs/themes/blob/main/VISION.md),
+        including its "What we will not merge" list.
+  - type: input
+    id: preset
+    attributes:
+      label: shadcn preset code
+      description: Copy it from ui.shadcn.com/create.
+      placeholder: "b4W4Iv9tfn"
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: What would this theme be for?
+      description: The kind of product or audience it suits, and why no theme in the catalog fits.
+    validations:
+      required: true
+  - type: textarea
+    id: look
+    attributes:
+      label: How should it look and feel?
+      description: A few sentences. Add a screenshot of the preset if you have one.

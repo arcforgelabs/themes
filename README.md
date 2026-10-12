@@ -39,6 +39,8 @@ Preview or change a preset at `https://ui.shadcn.com/create?preset=<code>`.
 | Path | What it is |
 | --- | --- |
 | `VISION.md` | What this repo is for. |
+| `CONTRIBUTING.md` | How to propose, add or change a theme. |
+| `LICENSE` | MIT. |
 | `SECURITY.md` | How to report a problem, the trust model, and the rules held here. |
 | `docs/theme-contract.md` | What every theme must contain. |
 | `themes/<slug>/theme.json` | The preset code, its decoded values, fonts and install command. `pickable` controls step 6. |
