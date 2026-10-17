@@ -24,6 +24,8 @@ Use the first source that exists. Stop at that source.
 
 **In standalone HTML** (an artifact, a report, a slide): copy the CSS variables from `themes/<slug>/tokens.css` into the page. Copy the light block and both dark blocks. Load the fonts from the link in the file's second line.
 
+**Diagrams, in every theme:** colour every box with the [diagram colour key](docs/diagram-colour-key.md). One colour has one meaning on every page.
+
 **Theme tokens only** (keep the repo's components): run `npx shadcn@latest apply --preset <code> --only theme`.
 
 ## Catalog
@@ -43,6 +45,7 @@ Preview or change a preset at `https://ui.shadcn.com/create?preset=<code>`.
 | `LICENSE` | MIT. |
 | `SECURITY.md` | How to report a problem, the trust model, and the rules held here. |
 | `docs/theme-contract.md` | What every theme must contain. |
+| `docs/diagram-colour-key.md` | The one colour key for every diagram, in every theme. |
 | `themes/<slug>/theme.json` | The preset code, its decoded values, fonts and install command. `pickable` controls step 6. |
 | `themes/<slug>/DESIGN.md` | The design contract in the [DESIGN.md format](https://www.npmjs.com/package/@google/design.md): tokens in front matter, usage rules in prose. |
 | `themes/<slug>/tokens.css` | Light and dark CSS variables for plain HTML. Generated. |
