@@ -98,6 +98,7 @@ Install in a shadcn project: `npx shadcn@latest init --preset b4W4Iv9tfn` (new) 
 - `primary` (rose, #C70036) is for the single main action on a view, switch on-states and links. Never use it for large surfaces or decoration.
 - `destructive` is text on its own tint (10% light, 20% dark), never a solid fill.
 - Charts are monochrome stone, `chart-1` (lightest) to `chart-5` (darkest). Color one series `primary` to call it out.
+- Diagrams take box colors from the catalog [diagram colour key](../../docs/diagram-colour-key.md) and from nothing else. Draw arrows in `muted-foreground`.
 - Dark mode (`dark-*` tokens) steps surfaces up in lightness, turns borders into white at 10%, and deepens `primary` so its foreground keeps contrast.
 
 ## Typography
@@ -133,6 +134,8 @@ Install in a shadcn project: `npx shadcn@latest init --preset b4W4Iv9tfn` (new) 
 
 - Do use one rose button per view; pair it with `outline`.
 - Do carry status as a word, never color alone.
+- Don't give a diagram color a second meaning. Red is risk only; orange is our own code only.
+- Don't write explanations in a legend. Use one word, with the meaning in a hover and focus tip.
 - Don't add drop shadows, colored borders or a colored left edge to cards.
 - Don't use emoji in UI.
 - Don't set `muted-foreground` text on a `muted` fill (4.39:1). Use it on `background` or `card`.

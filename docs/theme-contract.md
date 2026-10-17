@@ -25,6 +25,7 @@ The shadcn token set, in light and dark:
 - Each text color reads at 4.5:1 or more on the surfaces it is used on, in both light and dark. Large text (24px and up) needs 3:1.
 - Focus rings, input borders and meaningful icons reach 3:1 on their surface.
 - Status never relies on color alone.
+- Diagrams use the [diagram colour key](diagram-colour-key.md). A theme does not change what a key colour means.
 
 ## DESIGN.md prose
 
