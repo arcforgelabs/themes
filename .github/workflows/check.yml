@@ -1,0 +1,22 @@
+name: Theme check
+
+# Runs scripts/check on every theme: required files, DESIGN.md lint, and
+# WCAG AA text contrast in light and dark (docs/theme-contract.md).
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      # Full commit SHA. This org rejects a floating tag such as @v4.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Check every theme against the contract
+        run: python3 scripts/check
