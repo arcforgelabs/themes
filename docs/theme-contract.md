@@ -1,6 +1,6 @@
 # Theme contract
 
-Every theme in `themes/<slug>/` holds these parts. `scripts/check` tests the ones a script can test.
+Every theme in `themes/<slug>/` holds these parts. `scripts/check` tests the ones a script can test, and CI runs it on every pull request (`.github/workflows/check.yml`). It blends a translucent token over its surface before it takes a contrast ratio.
 
 ## Required files
 
