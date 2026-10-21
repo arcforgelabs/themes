@@ -26,6 +26,8 @@ Use the first source that exists. Stop at that source.
 
 **Diagrams, in every theme:** colour every box with the [diagram colour key](docs/diagram-colour-key.md). One colour has one meaning on every page.
 
+**Explainer pages and charts:** follow [explainer/SKILL.md](explainer/SKILL.md). Pick a chart kind from [explainer/references/charts.md](explainer/references/charts.md).
+
 **Theme tokens only** (keep the repo's components): run `npx shadcn@latest apply --preset <code> --only theme`.
 
 ## Catalog
@@ -46,6 +48,7 @@ Preview or change a preset at `https://ui.shadcn.com/create?preset=<code>`.
 | `SECURITY.md` | How to report a problem, the trust model, and the rules held here. |
 | `docs/theme-contract.md` | What every theme must contain. |
 | `docs/diagram-colour-key.md` | The one colour key for every diagram, in every theme. |
+| `explainer/` | The explainer library: a skill, chart catalogue and kit for visual explainer pages. Generated from `arcforgelabs/tools`; do not edit by hand. Published at https://arcforgelabs.github.io/themes/. |
 | `themes/<slug>/theme.json` | The preset code, its decoded values, fonts and install command. `pickable` controls step 6. |
 | `themes/<slug>/DESIGN.md` | The design contract in the [DESIGN.md format](https://www.npmjs.com/package/@google/design.md): tokens in front matter, usage rules in prose. |
 | `themes/<slug>/tokens.css` | Light and dark CSS variables for plain HTML. Generated. |
