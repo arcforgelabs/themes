@@ -4,7 +4,7 @@ Chart Lab drew 42 kinds of chart on the same subject. Each kind was rated: great
 
 Source: Chart Lab, `references/chart-lab.html` (ratings of 2026-10-19). The page source holds a hand-drawn SVG for every kind: copy from it when `charts.js` has no renderer.
 
-`charts.js` column: the renderer name in `kit/charts.js`, or `—` (draw it by hand).
+`charts.js` column: the renderer name in `kit/charts.js`, or `—` (draw it by hand). The kit also has helpers that are not rated kinds: `bars` (one bar per row, series colours), `table` (a CrispTable from rows) and `data` (one data set with a chart, table and diagram view switch).
 
 ## Great
 

@@ -63,6 +63,14 @@ Reference page: `references/chart-lab.html`. Start a new page from `examples/sta
 - Plain part: `card` with `border-strong`. Main family: `accent-subtle` with `accent`. Second family: `accent-2-subtle` with `accent-2` (steel). Optional or not live: dashed.
 - Red marks only the one thing to see first. Status colours only with a word.
 
+## Themes
+
+- Every colour, font, radius and chart series is a token (`kit/tokens.css`). Pages and charts hold no literal colours.
+- A page names its theme in `<meta name="ex-theme">`. Arc Forge is the fallback, not a fixed look: "red" above means `accent` in the active theme.
+- One theme button per page, fixed in the bottom-right corner. Never a theme switcher per component.
+- The viewer's pick, then the viewer's saved default, then the page theme, then Arc Forge.
+- A data block may have one view switch: chart, table or diagram of the same rows.
+
 ## Tables
 
 - CrispTable: fixed layout, every row 44px, no wrap, ellipsis. Status columns (76px) sit next to the name. The last column holds one sentence and a `More · N` pill.
@@ -83,5 +91,6 @@ Reference page: `references/chart-lab.html`. Start a new page from `examples/sta
 - Every fact sits in an item; the FactsList leads to each one.
 - No open text longer than one sentence.
 - Rows keep 44px; the rail picks the right section.
-- Light and dark both work; 320px has no sideways scroll.
+- Light and dark both work in every theme; 320px has no sideways scroll.
+- One theme button; WCAG AA contrast in every theme (`scripts/check`).
 - A headless browser test shows no page errors and opens every item.

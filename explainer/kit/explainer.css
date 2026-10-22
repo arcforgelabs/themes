@@ -139,3 +139,52 @@
 .ex-key:focus-visible{box-shadow:0 0 0 2px var(--ring)}
 .ex-key::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
 .ex-key:hover::after,.ex-key:focus::after{content:attr(data-tip);position:absolute;z-index:5;left:0;bottom:calc(100% + 6px);width:max-content;max-width:240px;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text-strong);font:400 12px var(--font-body);box-shadow:var(--shadow-md)}
+
+/* Corner radii from the token contract (charts.js adds the class; rx is the CSS geometry property). */
+.ex-figure .ex-r-sm { rx: var(--radius-sm); }
+.ex-figure .ex-r-md { rx: var(--radius-md); }
+.ex-figure .ex-r-lg { rx: var(--radius-lg); }
+
+/* Bars (charts.js bars): chart series tokens, never the diagram key. */
+.ex-bar--s1 { fill: var(--series-1); } .ex-bar--s2 { fill: var(--series-2); } .ex-bar--s3 { fill: var(--series-3); }
+.ex-bar--s4 { fill: var(--series-4); } .ex-bar--s5 { fill: var(--series-5); } .ex-bar--key { fill: var(--accent); }
+.ex-cellbtn { all: unset; cursor: pointer; border-radius: var(--radius-sm); color: var(--text-strong); font-weight: 600; }
+.ex-cellbtn:hover { text-decoration: underline; }
+.ex-cellbtn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* View switch (charts.js views and data): one segmented control per data block. */
+.ex-views { display: grid; gap: 10px; }
+.ex-seg { display: inline-flex; justify-self: start; gap: 2px; padding: 3px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-full); }
+.ex-seg button { all: unset; cursor: pointer; padding: 4px 14px; min-height: 28px; display: inline-flex; align-items: center; border-radius: var(--radius-full); font: 500 12px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.ex-seg button:hover { color: var(--text-strong); }
+.ex-seg button[aria-pressed="true"] { background: var(--text-strong); color: var(--card); }
+.ex-seg button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* ThemeEngine (explainer.js): one floating button per page, fixed in the bottom-right corner. */
+.ex-theme { position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font-family: var(--font-body); }
+.ex-theme-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: var(--radius-full); background: var(--card); color: var(--text-strong); border: 1px solid var(--border-strong); box-shadow: var(--shadow-md); cursor: pointer; }
+.ex-theme-btn:hover { border-color: var(--text-strong); }
+.ex-theme-btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.ex-theme-btn svg { width: 20px; height: 20px; }
+.ex-theme-menu { position: absolute; right: 0; bottom: 54px; width: min(320px, calc(100vw - 32px)); max-height: calc(100vh - 96px); overflow: auto; background: var(--card); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 12px; display: grid; gap: 10px; }
+.ex-theme-menu[hidden] { display: none; }
+.ex-theme-h { font: 500 11px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.ex-theme-list { display: grid; gap: 4px; }
+.ex-theme-opt { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 2px 10px; align-items: center; padding: 8px; border-radius: var(--radius-md); border: 1px solid transparent; }
+.ex-theme-opt:hover, .ex-theme-opt:focus-visible { border-color: var(--border-strong); }
+.ex-theme-opt:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+.ex-theme-opt[aria-checked="true"] { border-color: var(--text-strong); }
+.ex-theme-opt b { color: var(--text-strong); font: 600 14px var(--font-body); }
+.ex-theme-opt em { grid-column: 2; font: 400 12px var(--font-body); font-style: normal; color: var(--muted); }
+.ex-theme-opt .ex-theme-tag { grid-row: 1 / span 2; grid-column: 3; font: 500 10px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ex-sw { grid-row: 1 / span 2; display: flex; width: 44px; height: 28px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-strong); background: var(--bg-accent); }
+.ex-sw i { flex: 1; }
+.ex-sw i:nth-child(1) { background: var(--card); } .ex-sw i:nth-child(2) { background: var(--accent); }
+.ex-sw i:nth-child(3) { background: var(--series-2); } .ex-sw i:nth-child(4) { background: var(--text-strong); }
+.ex-theme-acts { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid var(--border); }
+.ex-theme-acts button { all: unset; cursor: pointer; padding: 6px 12px; border-radius: var(--radius-full); border: 1px solid var(--border-strong); font: 500 12px var(--font-body); color: var(--text-strong); }
+.ex-theme-acts button:hover { border-color: var(--text-strong); }
+.ex-theme-acts button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.ex-theme-acts button[disabled] { cursor: default; color: var(--muted); border-color: var(--border); }
+.ex-theme-note { margin: 0; font-size: 12px; color: var(--muted); }
+@media print { .ex-theme { display: none; } }
