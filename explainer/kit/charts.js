@@ -3,27 +3,33 @@
    over every part, and adds inline items to window.EX. Load this file and call the renderers
    BEFORE explainer.js, so the runtime finds every [data-ex].
    Item field `ex`: a key into window.EX, or an object {t, l, d, x} that is added under an auto key.
-   Layers: "" (plain), "key" (red, the one thing to see first), "alt" (steel), "off" (dashed, optional). */
+   Layers: "" (plain), "key" (red, the one thing to see first), "alt" (steel), "off" (dashed, optional).
+   Colours, fonts and radii come from the token contract (kit/tokens.css) through classes and var(); no literal colours.
+   Every chart is kept with its data. ExCharts.redraw() draws them all again (explainer.js calls it on a theme change),
+   with the same auto keys, so a pop-up or a Facts list still finds its part. */
 (function () {
-  var seq = 0;
+  var drawn = [], depth = 0, ctx = { p: 'c', n: 0 };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function key(ex, hint) {
     if (!ex) return '';
     if (typeof ex === 'string') return ex;
-    var k = 'auto.' + (hint || 'item') + '.' + (++seq);
+    var k = 'auto.' + ctx.p + '.' + (hint || 'item') + '.' + (++ctx.n);
     (window.EX = window.EX || {})[k] = ex; return k;
   }
   function mod(base, layer) { return base + (layer ? ' ' + base + '--' + layer : ''); }
+  // Corner radius from the token contract: a class sets the CSS rx property; the attribute is the no-CSS fallback.
+  function rc(rx) { return rx >= 14 ? 'ex-r-lg' : rx >= 10 ? 'ex-r-md' : 'ex-r-sm'; }
   function hot(k, x, y, w, h, rx) {
-    return k ? '<rect class="ex-hot" data-ex="' + esc(k) + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (rx == null ? 10 : rx) + '"/>' : '';
+    rx = rx == null ? 10 : rx;
+    return k ? '<rect class="ex-hot ' + rc(rx) + '" data-ex="' + esc(k) + '" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + rx + '"/>' : '';
   }
   function svg(el, w, h, label, body, hots, minW) {
-    var id = 'exc' + (++seq);
+    var id = 'exc-' + ctx.p;
     var defs = '<defs>' +
       '<marker id="' + id + 'h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ex-head-fill" d="M0 0 L10 5 L0 10 z"/></marker>' +
       '<marker id="' + id + 'k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ex-head-fill ex-head-fill--key" d="M0 0 L10 5 L0 10 z"/></marker></defs>';
     el.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="' + esc(label || '') + '"' +
-      ' style="max-width:' + w + 'px;min-width:' + Math.min(minW || w, w) + 'px">' + defs + body.replace(/\{M\}/g, id) + '<g>' + hots + '</g></svg>';
+      ' style="max-width:' + w + 'px;min-width:' + Math.min(minW || w, w) + 'px">' + defs + body.replace(/\{M\}/g, id).replace(/(<rect class="[^"]*)("[^>]*? rx="(\d+)")/g, function (m, a, b, rx) { return a + ' ' + rc(+rx) + b; }) + '<g>' + hots + '</g></svg>';
     return el.firstChild;
   }
   function boxText(x, y, w, h, title, sub) {
@@ -124,8 +130,8 @@
       o.cols.forEach(function (c, j) {
         var v = o.values[i][j], t = hi === lo ? 1 : (v - lo) / (hi - lo), x = pad + lw + j * cw;
         var fill = t < .5 ? 'color-mix(in oklab, var(--seq-2) ' + Math.round(t * 200) + '%, var(--seq-1))' : 'color-mix(in oklab, var(--seq-3) ' + Math.round((t - .5) * 200) + '%, var(--seq-2))';
-        body += '<rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="' + (cw - 2) + '" height="' + (ch - 2) + '" rx="4" style="fill:' + fill + '"/>';
-        body += '<text class="ex-tl" x="' + (x + cw / 2) + '" y="' + (y + ch / 2 + 4) + '" text-anchor="middle" style="fill:' + (t > .55 ? 'var(--on-accent)' : 'var(--text-strong)') + '">' + esc(fmt(v)) + '</text>';
+        body += '<rect class="ex-cell" x="' + (x + 1) + '" y="' + (y + 1) + '" width="' + (cw - 2) + '" height="' + (ch - 2) + '" rx="4" style="fill:' + fill + '"/>';
+        body += '<text class="ex-tl" x="' + (x + cw / 2) + '" y="' + (y + ch / 2 + 4) + '" text-anchor="middle" style="fill:' + inkOn(el, fill) + '">' + esc(fmt(v)) + '</text>';
         var ex = o.cellEx ? o.cellEx(r, c, v) : { t: r + ' · ' + c, l: 'HEATMAP', d: 'This cell is ' + r + ' against ' + c + '.', x: ['Its value is ' + fmt(v) + '.'] };
         hots += hot(key(ex, 'cell'), x + 1, y + 1, cw - 2, ch - 2, 4);
       });
@@ -157,7 +163,7 @@
       hots += '<path class="ex-hot" data-ex="' + esc(k) + '" d="' + d + '"/>';
     });
     o.nodes.forEach(function (n) {
-      body += '<rect x="' + n.x + '" y="' + n.y + '" width="' + nw + '" height="' + Math.max(n.h, 2) + '" rx="3" style="fill:' + (n.layer === 'key' ? 'var(--accent)' : n.layer === 'alt' ? 'var(--accent-2)' : 'var(--text-strong)') + '"/>';
+      body += '<rect class="ex-cell" x="' + n.x + '" y="' + n.y + '" width="' + nw + '" height="' + Math.max(n.h, 2) + '" rx="3" style="fill:' + (n.layer === 'key' ? 'var(--accent)' : n.layer === 'alt' ? 'var(--accent-2)' : 'var(--text-strong)') + '"/>';
       var tx = n.left ? n.x - 8 : n.x + nw + 8, anchor = n.left ? ' text-anchor="end"' : '';
       body += '<text class="ex-t"' + anchor + ' x="' + tx + '" y="' + (n.y + n.h / 2 + 1) + '">' + esc(n.title) + '</text><text class="ex-ts"' + anchor + ' x="' + tx + '" y="' + (n.y + n.h / 2 + 17) + '">' + esc(n.v + u) + '</text>';
       hots += hot(key(n.ex || { t: n.title, l: 'NODE', d: n.title + ' is one stage of the flow.', x: [n.title + ' carries ' + n.v + u + '.'] }, n.id), n.left ? n.x - labelW + 10 : n.x - 2, n.y, nw + labelW - 10, Math.max(n.h, 34), 4);
@@ -165,5 +171,110 @@
     return svg(el, W, H, o.label, body, hots, o.minWidth || 760);
   }
 
-  window.ExCharts = { connection: connection, container: container, capacity: capacity, heatmap: heatmap, sankey: sankey };
+  /* ---- Colour reading: a token expression as the browser paints it (for ink choice and the check). ---- */
+  var cv = null;
+  function rgba(el, expr) {
+    var probe = document.createElement('i');
+    probe.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;color:' + expr;
+    (el || document.body).appendChild(probe);
+    var c = getComputedStyle(probe).color; probe.remove();
+    cv = cv || document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+    cv.clearRect(0, 0, 1, 1); cv.fillStyle = c; cv.fillRect(0, 0, 1, 1);
+    var d = cv.getImageData(0, 0, 1, 1).data;
+    return [d[0], d[1], d[2], d[3] / 255];
+  }
+  function lum(c) { return c.slice(0, 3).map(function (x) { x /= 255; return x <= .04045 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }).reduce(function (s, x, i) { return s + x * [.2126, .7152, .0722][i]; }, 0); }
+  function contrast(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
+  // The text token that reads best on a fill: --text-strong or --on-accent.
+  function inkOn(el, fill) {
+    if (!el.isConnected) return 'var(--text-strong)';
+    var f = rgba(el, fill);
+    return contrast(rgba(el, 'var(--text-strong)'), f) >= contrast(rgba(el, 'var(--on-accent)'), f) ? 'var(--text-strong)' : 'var(--on-accent)';
+  }
+
+  /* Bars: one bar per row, coloured from the chart series tokens. Rated good.
+     {rows: [{label, value, layer, ex}], unit, max, label} */
+  function bars(el, o) {
+    var lw = o.labelW || 160, bw = o.barW || 520, bh = 26, gy = 14, pad = 20, top = 30, body = '', hots = '', u = o.unit || '';
+    var max = o.max || Math.max.apply(null, o.rows.map(function (r) { return r.value; }));
+    var W = pad * 2 + lw + bw + 70, H = top + o.rows.length * (bh + gy) + 6;
+    body += '<text class="ex-tm" x="' + (pad + lw) + '" y="18">0</text><text class="ex-tm" x="' + (pad + lw + bw) + '" y="18" text-anchor="end">' + esc(max + u) + '</text>';
+    o.rows.forEach(function (r, i) {
+      var y = top + i * (bh + gy), w = Math.max(2, bw * r.value / max), s = r.layer === 'key' ? 'ex-bar--key' : 'ex-bar--s' + (i % 5 + 1);
+      body += '<text class="ex-t" x="' + pad + '" y="' + (y + 18) + '">' + esc(r.label) + '</text>';
+      body += '<rect class="ex-bar ' + s + '" x="' + (pad + lw) + '" y="' + y + '" width="' + w + '" height="' + bh + '" rx="4"/>';
+      body += '<text class="ex-tl" x="' + (pad + lw + w + 8) + '" y="' + (y + 17) + '">' + esc(r.value + u) + '</text>';
+      hots += hot(key(r.ex || { t: r.label, l: o.layer || 'VALUE', d: r.label + ' is one row of ' + (o.label || 'this data') + '.', x: ['Its value is ' + r.value + u + '.'] }, 'row' + i), pad, y - 4, lw + w + 60, bh + 8, 4);
+    });
+    return svg(el, W, H, o.label, body, hots, o.minWidth || 760);
+  }
+
+  /* CrispTable from rows. {cols: ["Part", "Value"], rows: [{cells: [..], ex}]} */
+  function table(el, o) {
+    var h = '<div class="ex-table-wrap"><table class="ex-table"><thead><tr>' + o.cols.map(function (c) { return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>';
+    o.rows.forEach(function (r, i) {
+      var k = key(r.ex, 'row' + i);
+      h += '<tr>' + r.cells.map(function (c, j) { return j === 0 && k ? '<td><button type="button" class="ex-cellbtn" data-ex="' + esc(k) + '">' + esc(c) + '</button></td>' : '<td>' + esc(c) + '</td>'; }).join('') + '</tr>';
+    });
+    el.innerHTML = h + '</tbody></table></div>';
+    return el.firstChild;
+  }
+
+  /* View switch: the same data as a chart, a table or a diagram. One segmented control per data block.
+     {label, views: [{id, label, draw: function (el) {..}}], start} */
+  function views(el, o) {
+    var cur = el.dataset.view || o.start || o.views[0].id, v = o.views.filter(function (x) { return x.id === cur; })[0] || o.views[0];
+    el.classList.add('ex-views');
+    el.innerHTML = '<div class="ex-seg" role="group" aria-label="' + esc((o.label || 'Data') + ': view') + '">' +
+      o.views.map(function (x) { return '<button type="button" data-view="' + esc(x.id) + '" aria-pressed="' + (x === v) + '">' + esc(x.label) + '</button>'; }).join('') +
+      '</div><div class="ex-view"></div>';
+    var body = el.lastChild;
+    if (v.id !== 'table') body.classList.add('ex-figure');
+    v.draw(body);
+    el.querySelectorAll('.ex-seg button').forEach(function (b) {
+      b.addEventListener('click', function (e) { e.stopPropagation(); el.dataset.view = b.dataset.view; redrawOne(el); el.querySelector('[data-view="' + b.dataset.view + '"]').focus(); });
+    });
+    return el;
+  }
+
+  /* Data block: one data set, three views. Chart = bars, table = CrispTable, diagram = capacity (each row's share of the limit).
+     {label, unit, cols, rows: [{label, value, layer, ex}], limit, total, views: ["chart", "table", "diagram"], start} */
+  function data(el, o) {
+    var u = o.unit || '', sum = o.rows.reduce(function (s, r) { return s + r.value; }, 0), limit = o.limit || sum;
+    var rows = o.rows.map(function (r) {
+      return { label: r.label, value: r.value, layer: r.layer, ex: r.ex || { t: r.label, l: o.layer || 'VALUE', d: r.label + ' is one part of ' + (o.label || 'the total') + '.', x: ['Its value is ' + r.value + u + '.', 'That is ' + Math.round(100 * r.value / limit) + '% of ' + limit + u + '.'] } };
+    });
+    var all = {
+      chart: { id: 'chart', label: 'Chart', draw: function (b) { bars(b, { label: o.label, unit: u, rows: rows }); } },
+      table: { id: 'table', label: 'Table', draw: function (b) { table(b, { cols: o.cols || ['Part', 'Value', 'Share'], rows: rows.map(function (r) { return { cells: [r.label, r.value + u, Math.round(100 * r.value / limit) + '%'], ex: r.ex }; }) }); } },
+      diagram: { id: 'diagram', label: 'Diagram', draw: function (b) { capacity(b, { label: o.label, unit: u, limit: limit, rows: [{ label: o.total || 'Total', parts: rows.map(function (r, i) { return { label: r.label, value: r.value, layer: r.layer || (i % 2 ? 'alt' : ''), ex: r.ex }; }) }] }); } }
+    };
+    return views(el, { label: o.label, start: o.start, views: (o.views || ['chart', 'table', 'diagram']).map(function (id) { return all[id]; }) });
+  }
+
+  /* ---- Keep each chart with its data, so a theme change can draw it again with the same keys. ---- */
+  var count = 0;
+  function run(el, kind, o) {
+    if (!el.dataset.exChart) el.dataset.exChart = el.id || 'c' + (++count);
+    var keep = ctx; ctx = { p: el.dataset.exChart, n: 0 }; depth++;
+    try { return api[kind](el, o); } finally { depth--; ctx = keep; }
+  }
+  function redrawOne(el) {
+    drawn.forEach(function (d) { if (d.el === el) run(d.el, d.kind, d.o); });
+    document.dispatchEvent(new CustomEvent('ex:drawn', { detail: { el: el } }));
+  }
+  function redraw() {
+    drawn.forEach(function (d) { if (d.el.isConnected) run(d.el, d.kind, d.o); });
+    document.dispatchEvent(new CustomEvent('ex:drawn', { detail: { el: null } }));
+  }
+  var api = { connection: connection, container: container, capacity: capacity, heatmap: heatmap, sankey: sankey, bars: bars, table: table, views: views, data: data };
+  var pub = { redraw: redraw, rgba: rgba, contrast: contrast };
+  Object.keys(api).forEach(function (kind) {
+    pub[kind] = function (el, o) {
+      if (depth) return api[kind](el, o);
+      drawn = drawn.filter(function (d) { return d.el !== el; }); drawn.push({ el: el, kind: kind, o: o });
+      return run(el, kind, o);
+    };
+  });
+  window.ExCharts = pub;
 })();
