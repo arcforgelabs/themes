@@ -27,7 +27,7 @@ Every Arc Forge diagram uses this key: architecture maps, flow diagrams and comp
 
 ## Values for standalone HTML
 
-These values have contrast on the Maia Rose surfaces in both modes. Add them next to the theme tokens: the light values on `:root`, and the dark values in both dark blocks.
+These values have contrast on the Maia Rose surfaces in both modes. Load [`themes/colour-key.css`](../themes/colour-key.css) next to the theme tokens. The light values sit on `:root`. The dark values sit in both dark blocks. The sample below is the same text as that file, without its header comment.
 
 ```css
 :root {
@@ -38,8 +38,19 @@ These values have contrast on the Maia Rose surfaces in both modes. Add them nex
   --key-risk: oklch(0.55 0.22 25);
   --key-outside: oklch(0.60 0.01 60);
 }
-/* dark, in both @media (prefers-color-scheme: dark) and [data-theme="dark"] */
-:root {
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --key-stock: oklch(0.74 0.13 150);
+    --key-conf: oklch(0.72 0.12 240);
+    --key-exp: oklch(0.86 0.15 95);
+    --key-ours: oklch(0.76 0.16 55);
+    --key-risk: oklch(0.68 0.21 22);
+    --key-outside: oklch(0.70 0.01 60);
+  }
+}
+
+:root[data-theme="dark"] {
   --key-stock: oklch(0.74 0.13 150);
   --key-conf: oklch(0.72 0.12 240);
   --key-exp: oklch(0.86 0.15 95);

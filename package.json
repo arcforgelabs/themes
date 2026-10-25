@@ -1,0 +1,24 @@
+{
+  "name": "@arcforgelabs/themes",
+  "version": "2026.10.1",
+  "private": true,
+  "description": "Arc Forge design-system catalog. Install from a GitHub release tag, never from the main branch.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcforgelabs/themes.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./registry.json": "./registry.json",
+    "./logos": "./logos/index.js",
+    "./themes/*": "./themes/*"
+  },
+  "dependencies": {
+    "simple-icons": "16.35.0"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meridian",
+  "type": "registry:theme",
+  "title": "Meridian",
+  "description": "Meridian. Navy, champagne and stone. Plus Jakarta Sans for reading, Playfair Display for titles, square corners. Install: Copy themes/meridian/tokens.css and themes/colour-key.css into the page. Flow reads the --t-* properties.",
+  "cssVars": {
+    "light": {
+      "bg-accent": "#f6f3ef",
+      "card": "#ffffff",
+      "text": "#1d3444",
+      "text-strong": "#13242f",
+      "muted": "#4d6575",
+      "border": "#e0dbd1",
+      "border-strong": "#b8a685",
+      "ring": "#b08850",
+      "accent": "#1d3444",
+      "accent-subtle": "#faefdd",
+      "on-accent": "#f8dfb9",
+      "accent-2": "#526a7a",
+      "accent-2-subtle": "rgba(82, 106, 122, 0.1)",
+      "series-1": "#1d3444",
+      "series-2": "#22663f",
+      "series-3": "#8a5a00",
+      "series-4": "#ae9064",
+      "series-5": "#526a7a",
+      "shadow-md": "0 1px 2px rgba(29, 52, 68, 0.06)",
+      "shadow-lg": "0 1px 2px rgba(29, 52, 68, 0.06)"
+    },
+    "dark": {
+      "bg-accent": "#14252f",
+      "card": "#192d3a",
+      "text": "#ece5d8",
+      "text-strong": "#fbf4e8",
+      "muted": "#b9c3c9",
+      "border": "#2c4555",
+      "border-strong": "#56707f",
+      "ring": "#f8dfb9",
+      "accent": "#f8dfb9",
+      "accent-subtle": "rgba(248, 223, 185, 0.12)",
+      "on-accent": "#1d3444",
+      "accent-2": "#a3b2bb",
+      "accent-2-subtle": "rgba(163, 178, 187, 0.1)",
+      "series-1": "#f8dfb9",
+      "series-2": "#86d3a1",
+      "series-3": "#e7b75c",
+      "series-4": "rgba(248, 223, 185, 0.45)",
+      "series-5": "#a3b2bb",
+      "shadow-md": "0 1px 2px rgba(0, 0, 0, 0.30)",
+      "shadow-lg": "0 1px 2px rgba(0, 0, 0, 0.30)"
+    }
+  }
+}

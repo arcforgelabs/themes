@@ -1,0 +1,31 @@
+/* Diagram colour key. Same values as docs/diagram-colour-key.md.
+   One colour has one meaning in every theme. Do not edit one file without the other. */
+
+:root {
+  --key-stock: oklch(0.55 0.12 150);
+  --key-conf: oklch(0.52 0.12 240);
+  --key-exp: oklch(0.70 0.15 90);
+  --key-ours: oklch(0.64 0.17 50);
+  --key-risk: oklch(0.55 0.22 25);
+  --key-outside: oklch(0.60 0.01 60);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --key-stock: oklch(0.74 0.13 150);
+    --key-conf: oklch(0.72 0.12 240);
+    --key-exp: oklch(0.86 0.15 95);
+    --key-ours: oklch(0.76 0.16 55);
+    --key-risk: oklch(0.68 0.21 22);
+    --key-outside: oklch(0.70 0.01 60);
+  }
+}
+
+:root[data-theme="dark"] {
+  --key-stock: oklch(0.74 0.13 150);
+  --key-conf: oklch(0.72 0.12 240);
+  --key-exp: oklch(0.86 0.15 95);
+  --key-ours: oklch(0.76 0.16 55);
+  --key-risk: oklch(0.68 0.21 22);
+  --key-outside: oklch(0.70 0.01 60);
+}

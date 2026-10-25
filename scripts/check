@@ -63,20 +63,30 @@ for theme_dir in themes:
         failures.append(f"{slug}: DESIGN.md lint errors: {errors}")
     css_vars = json.loads((theme_dir / "registry-item.json").read_text(encoding="utf-8"))["cssVars"]
     for mode in ("light", "dark"):
-        tokens = css_vars[mode]
-        for fg, bg in TEXT_PAIRS:
-            if fg not in tokens or bg not in tokens:
-                failures.append(f"{slug} {mode}: missing token {fg if fg not in tokens else bg}")
-                continue
-            surface = over(tokens[bg], "#FFFFFF" if mode == "light" else "#000000")
-            ratio = contrast(over(tokens[fg], surface), surface)
-            if ratio < 4.5:
-                message = f"{slug} {mode}: {fg} on {bg} is {ratio:.2f}:1, needs 4.5:1"
-                if f"{mode}:{fg}/{bg}" in theme.get("contrastExceptions", {}):
-                    print("WARN", message, "(known upstream value; DESIGN.md steers around it)")
-                else:
-                    failures.append(message)
+        if mode not in css_vars:
+            failures.append(f"{slug}: registry-item.json has no cssVars.{mode}")
+    # Preset themes keep the shadcn text pairs. The other themes are checked
+    # against the explainer token contract in scripts/design-check.mjs.
+    if isinstance(theme.get("preset"), str) and theme["preset"]:
+        for mode in ("light", "dark"):
+            tokens = css_vars.get(mode, {})
+            for fg, bg in TEXT_PAIRS:
+                if fg not in tokens or bg not in tokens:
+                    failures.append(f"{slug} {mode}: missing token {fg if fg not in tokens else bg}")
+                    continue
+                surface = over(tokens[bg], "#FFFFFF" if mode == "light" else "#000000")
+                ratio = contrast(over(tokens[fg], surface), surface)
+                if ratio < 4.5:
+                    message = f"{slug} {mode}: {fg} on {bg} is {ratio:.2f}:1, needs 4.5:1"
+                    if f"{mode}:{fg}/{bg}" in theme.get("contrastExceptions", {}):
+                        print("WARN", message, "(known upstream value; DESIGN.md steers around it)")
+                    else:
+                        failures.append(message)
     print(f"checked {slug}")
+
+design = subprocess.run(["node", str(ROOT / "scripts" / "design-check.mjs")])
+if design.returncode:
+    failures.append("design-system check failed")
 
 for f in failures:
     print("FAIL", f)

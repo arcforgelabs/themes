@@ -1,0 +1,208 @@
+/* Harbour. Teal, mint and cream.
+   The --t-* properties are copied from Flow server/theme/themes.js.
+   The unprefixed properties are the explainer token contract: the same
+   mapping the explainer used, including its readability nudge. Do not edit
+   the unprefixed properties by hand. Change a --t-* value and run
+   node scripts/sync-contract.mjs, then copy the contract into this file.
+   Fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
+   Also load themes/colour-key.css. */
+
+:root {
+  --t-bg: #fdfaf8;
+  --t-s1: #f1f6f6;
+  --t-s2: #e4eeee;
+  --t-paper: #fefffe;
+  --t-brd: #dee5e6;
+  --t-brd-hi: #8fb7be;
+  --t-stroke-color: #ced9d8;
+  --t-text: #0d4e5f;
+  --t-strong: #0a3c49;
+  --t-dim: #4e6365;
+  --t-mute: #5d7374;
+  --t-accent: #0d4e5f;
+  --t-accent-bg: #e4ffff;
+  --t-accent-brd: #4a7c88;
+  --t-brand: #0d4e5f;
+  --t-brand-ink: #fefffe;
+  --t-primary: #0d4e5f;
+  --t-on-primary: #fefffe;
+  --t-ring: #4a7c88;
+  --t-warn: #8a5a00;
+  --t-warn-bg: rgba(138, 90, 0, 0.08);
+  --t-warn-brd: rgba(138, 90, 0, 0.32);
+  --t-danger: #b42318;
+  --t-danger-bg: rgba(180, 35, 24, 0.07);
+  --t-danger-brd: rgba(180, 35, 24, 0.40);
+  --t-success: #22663f;
+  --t-success-bg: rgba(34, 102, 63, 0.08);
+  --t-shadow: 0 1px 2px rgba(13, 78, 95, 0.05), 0 2px 6px rgba(13, 78, 95, 0.06);
+  --t-body: 'Nunito Sans Variable', 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --t-radius: 6px;
+  --t-radius-lg: 10px;
+  --t-stroke: 1px;
+  --t-label-size: 12px;
+  --t-label-weight: 600;
+  --t-label-spacing: .09em;
+  --t-label-case: uppercase;
+  --t-display-weight: 700;
+  --bg-accent: #fdfaf8;
+  --card: #fefffe;
+  --text: #0d4e5f;
+  --text-strong: #0a3c49;
+  --muted: #4e6365;
+  --border: #dee5e6;
+  --border-strong: #8fb7be;
+  --ring: #4a7c88;
+  --accent: #0d4e5f;
+  --accent-subtle: #e4ffff;
+  --on-accent: #fefffe;
+  --accent-2: #5d7374;
+  --accent-2-subtle: rgba(93, 115, 116, 0.1);
+  --series-1: #0d4e5f;
+  --series-2: #22663f;
+  --series-3: #8a5a00;
+  --series-4: #4a7c88;
+  --series-5: #5d7374;
+  --shadow-md: 0 1px 2px rgba(13, 78, 95, 0.05), 0 2px 6px rgba(13, 78, 95, 0.06);
+  --shadow-lg: 0 1px 2px rgba(13, 78, 95, 0.05), 0 2px 6px rgba(13, 78, 95, 0.06);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+  --font-body: 'Nunito Sans Variable', 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --t-bg: #071f26;
+    --t-s1: #0b2a33;
+    --t-s2: #11363f;
+    --t-paper: #0c2830;
+    --t-brd: #1b414b;
+    --t-brd-hi: #4a7c88;
+    --t-stroke-color: #2a5560;
+    --t-text: #d9e8ea;
+    --t-strong: #fefffe;
+    --t-dim: #a5bfc3;
+    --t-mute: #8fb0b5;
+    --t-accent: #c5feff;
+    --t-accent-bg: rgba(197, 254, 255, 0.10);
+    --t-accent-brd: rgba(197, 254, 255, 0.45);
+    --t-brand: #c5feff;
+    --t-brand-ink: #0d4e5f;
+    --t-primary: #c5feff;
+    --t-on-primary: #0d4e5f;
+    --t-ring: #8fb7be;
+    --t-warn: #e7b75c;
+    --t-warn-bg: rgba(231, 183, 92, 0.12);
+    --t-warn-brd: rgba(231, 183, 92, 0.32);
+    --t-danger: #f2877b;
+    --t-danger-bg: rgba(242, 135, 123, 0.12);
+    --t-danger-brd: rgba(242, 135, 123, 0.45);
+    --t-success: #86d3a1;
+    --t-success-bg: rgba(134, 211, 161, 0.12);
+    --t-shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+    --t-body: 'Nunito Sans Variable', 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --t-radius: 6px;
+    --t-radius-lg: 10px;
+    --t-stroke: 1px;
+    --t-label-size: 12px;
+    --t-label-weight: 600;
+    --t-label-spacing: .09em;
+    --t-label-case: uppercase;
+    --t-display-weight: 700;
+    --bg-accent: #071f26;
+    --card: #0c2830;
+    --text: #d9e8ea;
+    --text-strong: #fefffe;
+    --muted: #a5bfc3;
+    --border: #1b414b;
+    --border-strong: #4a7c88;
+    --ring: #8fb7be;
+    --accent: #c5feff;
+    --accent-subtle: rgba(197, 254, 255, 0.10);
+    --on-accent: #0d4e5f;
+    --accent-2: #8fb0b5;
+    --accent-2-subtle: rgba(143, 176, 181, 0.1);
+    --series-1: #c5feff;
+    --series-2: #86d3a1;
+    --series-3: #e7b75c;
+    --series-4: rgba(197, 254, 255, 0.45);
+    --series-5: #8fb0b5;
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+    --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --t-bg: #071f26;
+  --t-s1: #0b2a33;
+  --t-s2: #11363f;
+  --t-paper: #0c2830;
+  --t-brd: #1b414b;
+  --t-brd-hi: #4a7c88;
+  --t-stroke-color: #2a5560;
+  --t-text: #d9e8ea;
+  --t-strong: #fefffe;
+  --t-dim: #a5bfc3;
+  --t-mute: #8fb0b5;
+  --t-accent: #c5feff;
+  --t-accent-bg: rgba(197, 254, 255, 0.10);
+  --t-accent-brd: rgba(197, 254, 255, 0.45);
+  --t-brand: #c5feff;
+  --t-brand-ink: #0d4e5f;
+  --t-primary: #c5feff;
+  --t-on-primary: #0d4e5f;
+  --t-ring: #8fb7be;
+  --t-warn: #e7b75c;
+  --t-warn-bg: rgba(231, 183, 92, 0.12);
+  --t-warn-brd: rgba(231, 183, 92, 0.32);
+  --t-danger: #f2877b;
+  --t-danger-bg: rgba(242, 135, 123, 0.12);
+  --t-danger-brd: rgba(242, 135, 123, 0.45);
+  --t-success: #86d3a1;
+  --t-success-bg: rgba(134, 211, 161, 0.12);
+  --t-shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+  --t-body: 'Nunito Sans Variable', 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --t-radius: 6px;
+  --t-radius-lg: 10px;
+  --t-stroke: 1px;
+  --t-label-size: 12px;
+  --t-label-weight: 600;
+  --t-label-spacing: .09em;
+  --t-label-case: uppercase;
+  --t-display-weight: 700;
+  --bg-accent: #071f26;
+  --card: #0c2830;
+  --text: #d9e8ea;
+  --text-strong: #fefffe;
+  --muted: #a5bfc3;
+  --border: #1b414b;
+  --border-strong: #4a7c88;
+  --ring: #8fb7be;
+  --accent: #c5feff;
+  --accent-subtle: rgba(197, 254, 255, 0.10);
+  --on-accent: #0d4e5f;
+  --accent-2: #8fb0b5;
+  --accent-2-subtle: rgba(143, 176, 181, 0.1);
+  --series-1: #c5feff;
+  --series-2: #86d3a1;
+  --series-3: #e7b75c;
+  --series-4: rgba(197, 254, 255, 0.45);
+  --series-5: #8fb0b5;
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+  --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.20);
+  color-scheme: dark;
+}
+
+body { background: var(--bg-accent); color: var(--text); font-family: var(--font-body); }

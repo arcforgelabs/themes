@@ -1,0 +1,99 @@
+name: Release
+
+# Samuel pushes an annotated tag vYYYY.M.N. This workflow runs the
+# design-system checks and, only if they pass, publishes a GitHub Release
+# for that tag. It does not publish to a package registry. It does not run
+# on pull requests or on main, and it does not create the tag.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24.22.1"
+
+      - name: Require an annotated calendar tag
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF#refs/tags/}"
+          if [[ ! "$tag" =~ ^v([0-9]{4})\.([1-9]|1[0-2])\.([1-9][0-9]*)$ ]]; then
+            echo "::error::${tag} is not a calendar tag vYYYY.M.N with no leading zeros." >&2
+            exit 1
+          fi
+          kind="$(git cat-file -t "$tag")"
+          if [[ "$kind" != "tag" ]]; then
+            echo "::error::${tag} must be an annotated tag." >&2
+            exit 1
+          fi
+          version="${tag#v}"
+          package="$(node -p "require('./package.json').version")"
+          if [[ "$package" != "$version" ]]; then
+            echo "::error::package.json version ${package} does not match ${tag}." >&2
+            exit 1
+          fi
+          echo "version=${version}" >> "$GITHUB_ENV"
+          echo "tag=${tag}" >> "$GITHUB_ENV"
+
+      - name: Install the logo library
+        run: npm ci
+
+      - name: Run the design-system checks
+        run: python3 scripts/check
+
+      - name: Require the changelog section
+        run: |
+          python3 - << 'PY'
+          import os, pathlib, re, sys
+          version = os.environ["version"]
+          text = pathlib.Path("CHANGELOG.md").read_text(encoding="utf-8")
+          match = re.search(rf"^## {re.escape(version)}\s*$", text, re.M)
+          if not match:
+              sys.exit(f"CHANGELOG.md has no section for {version}")
+          start = match.end()
+          nxt = re.search(r"^## ", text[start:], re.M)
+          body = text[start:start + nxt.start()] if nxt else text[start:]
+          body = body.strip()
+          if not body:
+              sys.exit(f"CHANGELOG.md section {version} is empty")
+          pathlib.Path(os.environ["RUNNER_TEMP"], "notes.md").write_text(body + "\n", encoding="utf-8")
+          PY
+
+      - name: Build the archive
+        run: |
+          set -euo pipefail
+          name="arcforge-themes-${version}"
+          tar -czf "${name}.tar.gz" \
+            themes registry.json logos docs/diagram-colour-key.md docs/theme-contract.md \
+            package.json package-lock.json CHANGELOG.md README.md
+          sha256sum "${name}.tar.gz" > "${name}.tar.gz.sha256"
+
+      - name: Publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "$tag" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "themes ${version}" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            --verify-tag \
+            "arcforge-themes-${version}.tar.gz" \
+            "arcforge-themes-${version}.tar.gz.sha256"

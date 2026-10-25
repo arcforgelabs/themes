@@ -32,6 +32,7 @@
   "install": "npx shadcn@latest apply --preset b4W4Iv9tfn",
   "create": "https://ui.shadcn.com/create?preset=b4W4Iv9tfn",
   "generated": "2026-10-12T03:15:47Z",
+  "contractFrom": "shadcn",
   "pickable": true,
   "summary": "Soft and rounded. Stone neutrals, one rose accent, Merriweather headings over IBM Plex Sans, Remix icons.",
   "mirror": "Claude Design System artifact 'Maia Rose' (a copy for Claude harnesses; this repo is the source).",

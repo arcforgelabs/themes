@@ -15,8 +15,9 @@ This repo holds no secrets and no customer data. Its values come from public sha
 The risk is its reach. Arc Forge's global agent instructions tell every agent, in every harness, to obey `README.md` here. Text in this repo is therefore an instruction surface for every agent session, and the install commands it lists run in every project that applies a theme.
 
 - `README.md`, `AGENTS.md`, every `DESIGN.md` and every install command are security-relevant. A change that adds an instruction, a command, a URL or a package to them needs a careful review.
-- Install commands use only `npx shadcn@latest` with a preset code, or a registry item URL inside this repo. Do not add other packages, scripts or hosts.
-- `scripts/add-theme` fetches from `ui.shadcn.com` and runs `npx shadcn@latest`. `scripts/check` runs a pinned `@google/design.md`. Do not add other network calls.
+- Install commands use only `npx shadcn@latest` with a preset code, a registry item inside this repo, or a copy of `themes/<slug>/tokens.css` and `themes/colour-key.css`. Do not add other packages, scripts or hosts to an install line.
+- This repo pins `simple-icons` for the logo library. Applying a theme does not install that package.
+- `scripts/add-theme` fetches from `ui.shadcn.com` and runs `npx shadcn@latest`. `scripts/check` runs a pinned `@google/design.md` and the local design-system check. Do not add other network calls.
 
 ## Rules held here
 

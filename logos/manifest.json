@@ -1,0 +1,24 @@
+{
+  "simpleIcons": "16.35.0",
+  "marks": [],
+  "gaps": [
+    {
+      "slug": "slack",
+      "source": "https://slack.com/terms-of-service/slack-brand",
+      "fetched": "2026-10-25",
+      "terms": "Slack brand terms say not to distribute or otherwise make available Slack logos, marks, or assets. Simple Icons 16.35.0 has no Slack mark. No file was added."
+    },
+    {
+      "slug": "microsoft",
+      "source": "https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks",
+      "fetched": "2026-10-25",
+      "terms": "Microsoft trademark guidelines say logos, app icons, and designs can never be used without an express license, and say not to use Microsoft logos or icons in any manner without one. Simple Icons 16.35.0 has no Microsoft mark. No file was added."
+    },
+    {
+      "slug": "phantom",
+      "source": "https://docs.phantom.com/resources/assets",
+      "fetched": "2026-10-25",
+      "terms": "Phantom publishes an integration asset zip and says the icons are for use in an integration. The page does not grant redistribution in this public catalog under the repository license. Simple Icons 16.35.0 has no Phantom mark. No file was added."
+    }
+  ]
+}
