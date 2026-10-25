@@ -1,0 +1,19 @@
+{
+  "name": "Harbour",
+  "slug": "harbour",
+  "preset": null,
+  "base": null,
+  "contractFrom": "flow",
+  "values": {
+    "style": "harbour",
+    "source": "Flow server/theme/themes.js harbour, copied 2026-10-25"
+  },
+  "fonts": {
+    "sans": { "family": "Nunito Sans", "generic": "sans-serif" },
+    "heading": { "family": "Playfair Display", "generic": "serif" },
+    "mono": { "family": "JetBrains Mono", "generic": "monospace" }
+  },
+  "install": "Copy themes/harbour/tokens.css and themes/colour-key.css into the page. Flow reads the --t-* properties.",
+  "pickable": false,
+  "summary": "Teal, mint and cream. Nunito Sans for reading, Playfair Display for titles."
+}

@@ -10,8 +10,8 @@ Finished feels like this: an agent starts a new project, reads one README, and t
 
 ## What we will not merge
 
-- A theme that does not start from a shadcn/ui preset.
-- Hand-edited generated values. Change the preset and regenerate.
-- Install commands, scripts or packages beyond `npx shadcn` and this repo's own files.
+- A new theme that does not start from a shadcn/ui preset. Arc Forge, Harbour and Meridian are already in the catalog. They are copied from their product sources. They are not new presets.
+- Hand-edited generated values. Change the preset, or the copied source tokens, and regenerate.
+- Install commands, scripts or packages beyond `npx shadcn` and this repo's own files. The logo library pins Simple Icons inside this repo. Applying a theme does not install it.
 - Unreleased client or brand work. That belongs in a private repo.
 - Near-duplicates of a theme already in the catalog.

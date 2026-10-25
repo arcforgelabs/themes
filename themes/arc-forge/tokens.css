@@ -1,0 +1,91 @@
+/* Arc Forge. Red, steel and grey. Fallback theme.
+   Values copied from the explainer token file (the Knot values of the Arc Forge
+   design system, except dark --accent and dark --on-accent). Dark --accent is
+   #e7364b, not #e5243b, and dark --on-accent is dark ink: the Knot red reads at
+   4.17:1 as small text on the dark card, and level double A needs 4.5:1; white
+   on the lighter red is 4.18:1. Do not nudge these values. Change them here.
+   Fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+   Also load themes/colour-key.css. */
+
+:root {
+  --bg-accent: #f2f2f5;
+  --card: #ffffff;
+  --text: #3a3a42;
+  --text-strong: #18181b;
+  --muted: #68676f;
+  --border: #e2e2e8;
+  --border-strong: #ccccd4;
+  --ring: #c41e30;
+  --accent: #c41e30;
+  --accent-subtle: rgba(196,30,48,.08);
+  --on-accent: #ffffff;
+  --accent-2: #5a626e;
+  --accent-2-subtle: rgba(90,98,110,.08);
+  --series-1: #c41e30;
+  --series-2: #5a626e;
+  --series-3: #18181b;
+  --series-4: #8a6d3b;
+  --series-5: #3f6f8f;
+  --shadow-md: 0 4px 12px rgba(0,0,0,.06);
+  --shadow-lg: 0 12px 28px rgba(0,0,0,.08);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+  --font-body: "Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: "JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-accent: #0d0d0f;
+    --card: #111113;
+    --text: #c6c6cb;
+    --text-strong: #f5f5f7;
+    --muted: #8a8a94;
+    --border: #202026;
+    --border-strong: #303038;
+    --ring: #e5243b;
+    --accent: #e7364b;
+    --accent-subtle: rgba(229,36,59,.12);
+    --on-accent: #0d0d0f;
+    --accent-2: #b8bdc4;
+    --accent-2-subtle: rgba(184,189,196,.1);
+    --series-1: #ef4e61;
+    --series-2: #b8bdc4;
+    --series-3: #f5f5f7;
+    --series-4: #d9b26a;
+    --series-5: #7fb3d5;
+    --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-accent: #0d0d0f;
+  --card: #111113;
+  --text: #c6c6cb;
+  --text-strong: #f5f5f7;
+  --muted: #8a8a94;
+  --border: #202026;
+  --border-strong: #303038;
+  --ring: #e5243b;
+  --accent: #e7364b;
+  --accent-subtle: rgba(229,36,59,.12);
+  --on-accent: #0d0d0f;
+  --accent-2: #b8bdc4;
+  --accent-2-subtle: rgba(184,189,196,.1);
+  --series-1: #ef4e61;
+  --series-2: #b8bdc4;
+  --series-3: #f5f5f7;
+  --series-4: #d9b26a;
+  --series-5: #7fb3d5;
+  --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+body { background: var(--bg-accent); color: var(--text); font-family: var(--font-body); }

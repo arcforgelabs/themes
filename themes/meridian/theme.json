@@ -1,0 +1,19 @@
+{
+  "name": "Meridian",
+  "slug": "meridian",
+  "preset": null,
+  "base": null,
+  "contractFrom": "flow",
+  "values": {
+    "style": "meridian",
+    "source": "Flow server/theme/themes.js meridian, copied 2026-10-25"
+  },
+  "fonts": {
+    "sans": { "family": "Plus Jakarta Sans", "generic": "sans-serif" },
+    "heading": { "family": "Playfair Display", "generic": "serif" },
+    "mono": { "family": "JetBrains Mono", "generic": "monospace" }
+  },
+  "install": "Copy themes/meridian/tokens.css and themes/colour-key.css into the page. Flow reads the --t-* properties.",
+  "pickable": false,
+  "summary": "Navy, champagne and stone. Plus Jakarta Sans for reading, Playfair Display for titles, square corners."
+}

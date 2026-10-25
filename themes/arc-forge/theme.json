@@ -1,0 +1,19 @@
+{
+  "name": "Arc Forge",
+  "slug": "arc-forge",
+  "preset": null,
+  "base": null,
+  "contractFrom": "tokens",
+  "values": {
+    "style": "arc-forge",
+    "source": "explainer token file, Knot values with the dark accent contrast fix"
+  },
+  "fonts": {
+    "sans": { "family": "Geist", "generic": "sans-serif" },
+    "mono": { "family": "JetBrains Mono", "generic": "monospace" }
+  },
+  "install": "Copy themes/arc-forge/tokens.css and themes/colour-key.css into the page.",
+  "pickable": false,
+  "summary": "Red, steel and grey. Geist for text, JetBrains Mono for code. The fallback theme.",
+  "mirror": "Explainer kit tokens. This catalog is now the source."
+}

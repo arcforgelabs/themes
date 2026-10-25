@@ -19,8 +19,20 @@ Arc Forge's agent instructions tell every agent to obey this repo's `README.md`.
 1. Start from a preset at [ui.shadcn.com/create](https://ui.shadcn.com/create). For a new theme, open a "Propose a theme" issue first.
 2. Run `scripts/add-theme <code> <slug> "<Name>"`. Change a token by changing the preset and running it again. Never edit `tokens.css`, `registry-item.json`, `registry.json` or the `DESIGN.md` front matter by hand.
 3. Write the `DESIGN.md` prose as usage rules: short imperative sentences that name tokens. [`docs/theme-contract.md`](docs/theme-contract.md) lists what a theme must contain.
-4. Run `scripts/check` and put its output in the pull request's Evidence. A new contrast exception needs a reason in `theme.json` and a matching rule in `DESIGN.md`.
+4. Run `node scripts/sync-contract.mjs` when `tokens.css` changed, then `scripts/check`. Put the output in the pull request's Evidence. A new contrast exception needs a reason in `theme.json` and a matching rule in `DESIGN.md`.
 5. For a change to the look, add a screenshot of the theme applied to a real page, with the viewport and both light and dark.
+
+## Cut a release
+
+`main` is the working branch. Consumers pin a release tag, never `main`.
+
+Versions follow Flow's calendar: `YYYY.M.N` with no leading zeros. The year, the month, and a count of releases in that month. The count is not the day. A new month starts again at 1. Tags add a `v`. The first intended tag is `v2026.10.1`. Cutting it is a maintainer decision. This repository does not push that tag on its own.
+
+1. Open a release pull request, or commit on `main`, with `package.json` `version` set to `YYYY.M.N` and a `CHANGELOG.md` section `## YYYY.M.N`.
+2. After that commit is on `main`, push an annotated tag: `git tag --annotate vYYYY.M.N --message "themes YYYY.M.N" && git push origin vYYYY.M.N`.
+3. The release workflow runs the design-system checks. If they pass, it publishes a GitHub Release titled `themes YYYY.M.N` and attaches an archive. It does not publish to a package registry.
+
+A Node app pins the tag, for example `github:arcforgelabs/themes#v2026.10.1`. The explainer sync, when it moves, fetches that same tag.
 
 `scripts/add-theme` and `scripts/check` need Python 3.10 or newer and Node with `npx`.
 

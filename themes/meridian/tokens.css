@@ -1,0 +1,208 @@
+/* Meridian. Navy, champagne and stone.
+   The --t-* properties are copied from Flow server/theme/themes.js.
+   The unprefixed properties are the explainer token contract: the same
+   mapping the explainer used, including its readability nudge. Do not edit
+   the unprefixed properties by hand. Change a --t-* value and run
+   node scripts/sync-contract.mjs, then copy the contract into this file.
+   Fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
+   Also load themes/colour-key.css. */
+
+:root {
+  --t-bg: #f6f3ef;
+  --t-s1: #efe9e0;
+  --t-s2: #e6ded1;
+  --t-paper: #ffffff;
+  --t-brd: #e0dbd1;
+  --t-brd-hi: #b8a685;
+  --t-stroke-color: #d5cec2;
+  --t-text: #1d3444;
+  --t-strong: #13242f;
+  --t-dim: #4d6575;
+  --t-mute: #526a7a;
+  --t-accent: #1d3444;
+  --t-accent-bg: #faefdd;
+  --t-accent-brd: #d4b07a;
+  --t-brand: #1d3444;
+  --t-brand-ink: #f8dfb9;
+  --t-primary: #1d3444;
+  --t-on-primary: #f8dfb9;
+  --t-ring: #b08850;
+  --t-warn: #8a5a00;
+  --t-warn-bg: rgba(138, 90, 0, 0.08);
+  --t-warn-brd: rgba(138, 90, 0, 0.32);
+  --t-danger: #b42318;
+  --t-danger-bg: rgba(180, 35, 24, 0.07);
+  --t-danger-brd: rgba(180, 35, 24, 0.40);
+  --t-success: #22663f;
+  --t-success-bg: rgba(34, 102, 63, 0.08);
+  --t-shadow: 0 1px 2px rgba(29, 52, 68, 0.06);
+  --t-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --t-radius: 0px;
+  --t-radius-lg: 2px;
+  --t-stroke: 1px;
+  --t-label-size: 12px;
+  --t-label-weight: 600;
+  --t-label-spacing: .16em;
+  --t-label-case: uppercase;
+  --t-display-weight: 400;
+  --bg-accent: #f6f3ef;
+  --card: #ffffff;
+  --text: #1d3444;
+  --text-strong: #13242f;
+  --muted: #4d6575;
+  --border: #e0dbd1;
+  --border-strong: #b8a685;
+  --ring: #b08850;
+  --accent: #1d3444;
+  --accent-subtle: #faefdd;
+  --on-accent: #f8dfb9;
+  --accent-2: #526a7a;
+  --accent-2-subtle: rgba(82, 106, 122, 0.1);
+  --series-1: #1d3444;
+  --series-2: #22663f;
+  --series-3: #8a5a00;
+  --series-4: #ae9064;
+  --series-5: #526a7a;
+  --shadow-md: 0 1px 2px rgba(29, 52, 68, 0.06);
+  --shadow-lg: 0 1px 2px rgba(29, 52, 68, 0.06);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 2px;
+  --radius-full: 9999px;
+  --font-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --t-bg: #14252f;
+    --t-s1: #1d3444;
+    --t-s2: #26404f;
+    --t-paper: #192d3a;
+    --t-brd: #2c4555;
+    --t-brd-hi: #56707f;
+    --t-stroke-color: #334d5e;
+    --t-text: #ece5d8;
+    --t-strong: #fbf4e8;
+    --t-dim: #b9c3c9;
+    --t-mute: #a3b2bb;
+    --t-accent: #f8dfb9;
+    --t-accent-bg: rgba(248, 223, 185, 0.12);
+    --t-accent-brd: rgba(248, 223, 185, 0.45);
+    --t-brand: #f8dfb9;
+    --t-brand-ink: #1d3444;
+    --t-primary: #f8dfb9;
+    --t-on-primary: #1d3444;
+    --t-ring: #f8dfb9;
+    --t-warn: #e7b75c;
+    --t-warn-bg: rgba(231, 183, 92, 0.12);
+    --t-warn-brd: rgba(231, 183, 92, 0.32);
+    --t-danger: #f2877b;
+    --t-danger-bg: rgba(242, 135, 123, 0.12);
+    --t-danger-brd: rgba(242, 135, 123, 0.45);
+    --t-success: #86d3a1;
+    --t-success-bg: rgba(134, 211, 161, 0.12);
+    --t-shadow: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --t-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --t-radius: 0px;
+    --t-radius-lg: 2px;
+    --t-stroke: 1px;
+    --t-label-size: 12px;
+    --t-label-weight: 600;
+    --t-label-spacing: .16em;
+    --t-label-case: uppercase;
+    --t-display-weight: 400;
+    --bg-accent: #14252f;
+    --card: #192d3a;
+    --text: #ece5d8;
+    --text-strong: #fbf4e8;
+    --muted: #b9c3c9;
+    --border: #2c4555;
+    --border-strong: #56707f;
+    --ring: #f8dfb9;
+    --accent: #f8dfb9;
+    --accent-subtle: rgba(248, 223, 185, 0.12);
+    --on-accent: #1d3444;
+    --accent-2: #a3b2bb;
+    --accent-2-subtle: rgba(163, 178, 187, 0.1);
+    --series-1: #f8dfb9;
+    --series-2: #86d3a1;
+    --series-3: #e7b75c;
+    --series-4: rgba(248, 223, 185, 0.45);
+    --series-5: #a3b2bb;
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.30);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --t-bg: #14252f;
+  --t-s1: #1d3444;
+  --t-s2: #26404f;
+  --t-paper: #192d3a;
+  --t-brd: #2c4555;
+  --t-brd-hi: #56707f;
+  --t-stroke-color: #334d5e;
+  --t-text: #ece5d8;
+  --t-strong: #fbf4e8;
+  --t-dim: #b9c3c9;
+  --t-mute: #a3b2bb;
+  --t-accent: #f8dfb9;
+  --t-accent-bg: rgba(248, 223, 185, 0.12);
+  --t-accent-brd: rgba(248, 223, 185, 0.45);
+  --t-brand: #f8dfb9;
+  --t-brand-ink: #1d3444;
+  --t-primary: #f8dfb9;
+  --t-on-primary: #1d3444;
+  --t-ring: #f8dfb9;
+  --t-warn: #e7b75c;
+  --t-warn-bg: rgba(231, 183, 92, 0.12);
+  --t-warn-brd: rgba(231, 183, 92, 0.32);
+  --t-danger: #f2877b;
+  --t-danger-bg: rgba(242, 135, 123, 0.12);
+  --t-danger-brd: rgba(242, 135, 123, 0.45);
+  --t-success: #86d3a1;
+  --t-success-bg: rgba(134, 211, 161, 0.12);
+  --t-shadow: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --t-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --t-display: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --t-data: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --t-radius: 0px;
+  --t-radius-lg: 2px;
+  --t-stroke: 1px;
+  --t-label-size: 12px;
+  --t-label-weight: 600;
+  --t-label-spacing: .16em;
+  --t-label-case: uppercase;
+  --t-display-weight: 400;
+  --bg-accent: #14252f;
+  --card: #192d3a;
+  --text: #ece5d8;
+  --text-strong: #fbf4e8;
+  --muted: #b9c3c9;
+  --border: #2c4555;
+  --border-strong: #56707f;
+  --ring: #f8dfb9;
+  --accent: #f8dfb9;
+  --accent-subtle: rgba(248, 223, 185, 0.12);
+  --on-accent: #1d3444;
+  --accent-2: #a3b2bb;
+  --accent-2-subtle: rgba(163, 178, 187, 0.1);
+  --series-1: #f8dfb9;
+  --series-2: #86d3a1;
+  --series-3: #e7b75c;
+  --series-4: rgba(248, 223, 185, 0.45);
+  --series-5: #a3b2bb;
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.30);
+  color-scheme: dark;
+}
+
+body { background: var(--bg-accent); color: var(--text); font-family: var(--font-body); }
