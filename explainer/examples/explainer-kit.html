@@ -65,10 +65,18 @@
   <div class="ex-head"><span class="ex-n">09</span><h2>One figure per option</h2><p>Tabs switch between items of the same kind. The reader picks one; the page does not stack them.</p></div>
   <div id="fig-tabs"></div>
 </section>
+<section class="ex-section" id="drawn">
+  <div class="ex-head"><span class="ex-n">10</span><h2>Hand-drawn parts</h2><p>The drawing module gives icons, logos, moving dots, stamps and blast rings. A page uses them to draw its own picture of the subject.</p></div>
+  <div id="fig-drawn"></div>
+  <div id="fig-rings"></div>
+  <details class="ex-facts" data-def="Hand-drawn parts are the pieces a page uses to draw a picture of its own subject."></details>
+</section>
 </div>
 
 <script src="../kit/themes.js"></script>
 <script src="../kit/charts.js"></script>
+<script src="../kit/draw.js"></script>
+<script src="../kit/canvas.js"></script>
 <script>
 window.EX = {
   "data": {"t": "Page data", "l": "Page", "d": "Page data is the set of entries that name every part on the page.", "x": [
@@ -620,6 +628,82 @@ ExCharts.tabs(document.getElementById('fig-tabs'), {
       edges: [{from: 'u', to: 'p', label: 'opens'}]}); }}
   ]
 });
+
+/* 10 · Hand-drawn parts (kit/draw.js): the kit files flow into one page; the page goes to a repository and a browser. */
+var GITHUB_LOGO = 'data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViPC90aXRsZT48cGF0aCBkPSJNMTIgLjI5N2MtNi42MyAwLTEyIDUuMzczLTEyIDEyIDAgNS4zMDMgMy40MzggOS44IDguMjA1IDExLjM4NS42LjExMy44Mi0uMjU4LjgyLS41NzcgMC0uMjg1LS4wMS0xLjA0LS4wMTUtMi4wNC0zLjMzOC43MjQtNC4wNDItMS42MS00LjA0Mi0xLjYxQzQuNDIyIDE4LjA3IDMuNjMzIDE3LjcgMy42MzMgMTcuN2MtMS4wODctLjc0NC4wODQtLjcyOS4wODQtLjcyOSAxLjIwNS4wODQgMS44MzggMS4yMzYgMS44MzggMS4yMzYgMS4wNyAxLjgzNSAyLjgwOSAxLjMwNSAzLjQ5NS45OTguMTA4LS43NzYuNDE3LTEuMzA1Ljc2LTEuNjA1LTIuNjY1LS4zLTUuNDY2LTEuMzMyLTUuNDY2LTUuOTMgMC0xLjMxLjQ2NS0yLjM4IDEuMjM1LTMuMjItLjEzNS0uMzAzLS41NC0xLjUyMy4xMDUtMy4xNzYgMCAwIDEuMDA1LS4zMjIgMy4zIDEuMjMuOTYtLjI2NyAxLjk4LS4zOTkgMy0uNDA1IDEuMDIuMDA2IDIuMDQuMTM4IDMgLjQwNSAyLjI4LTEuNTUyIDMuMjg1LTEuMjMgMy4yODUtMS4yMy42NDUgMS42NTMuMjQgMi44NzMuMTIgMy4xNzYuNzY1Ljg0IDEuMjMgMS45MSAxLjIzIDMuMjIgMCA0LjYxLTIuODA1IDUuNjI1LTUuNDc1IDUuOTIuNDIuMzYuODEgMS4wOTYuODEgMi4yMiAwIDEuNjA2LS4wMTUgMi44OTYtLjAxNSAzLjI4NiAwIC4zMTUuMjEuNjkuODI1LjU3QzIwLjU2NSAyMi4wOTIgMjQgMTcuNTkyIDI0IDEyLjI5N2MwLTYuNjI3LTUuMzczLTEyLTEyLTEyIi8+PC9zdmc+';
+Object.assign(window.EX, {
+  'd.page': {t: 'One page', l: 'DRAWN', d: 'The page is the one file a reader opens.', x: [
+    'It is drawn as a sheet, because a reader knows a sheet at a glance.',
+    'Four kit files flow into it; the dots show that flow.',
+    'The red outline marks it as the one key thing in the figure.',
+    'scripts/bundle puts the four files inside the page for delivery.',
+    'The same page goes to a repository, a browser or a phone.']},
+  'd.tokens': {t: 'tokens.css', l: 'KIT FILE', d: 'tokens.css holds every colour, font and corner radius.', x: [
+    'The drawing module reads colours only through classes that use these tokens.',
+    'A literal colour in a page fails scripts/check.',
+    'Each theme sets the same token names.',
+    'The icon is a gear, because the file sets the page up.']},
+  'd.charts': {t: 'charts.js', l: 'KIT FILE', d: 'charts.js draws rated chart kinds from data.', x: [
+    'It covers structure, time, amount and hierarchy views.',
+    'Its figures are correct but plain.',
+    'A page adds hand-drawn figures where the subject has its own shape.',
+    'It loads before the drawing module.']},
+  'd.draw': {t: 'draw.js', l: 'KIT FILE', d: 'draw.js gives the parts for a hand-drawn figure.', x: [
+    'It gives 32 line icons, icon discs, logo plates, arrows, moving dots, stamps, leader lines and blast rings.',
+    'Every part returns vector markup as text, so a page joins parts with plain string code.',
+    'A part with an entry key opens a pop-up like any chart part.',
+    'Moving dots stop when the reader asks for reduced motion.',
+    'The recipes are in references/creative.md.']},
+  'd.runtime': {t: 'explainer.js', l: 'KIT FILE', d: 'explainer.js opens pop-ups and adds the theme button.', x: [
+    'It loads last, after every figure is drawn.',
+    'It marks each part with an entry key as a button.',
+    'It listens for redraws, so a figure drawn later still opens.']},
+  'd.repo': {t: 'Repository', l: 'LOGO', d: 'A logo plate shows a real product with its own mark.', x: [
+    'This plate holds the GitHub mark from Simple Icons, version 13.21.0.',
+    'The plate stays light in dark mode, because most marks are drawn for a light ground.',
+    'A logo comes in as a data address, so the page needs no network.',
+    'Use a logo for every named product, company or model maker on a figure.']},
+  'd.browser': {t: 'Browser', l: 'ICON', d: 'An icon disc shows a kind of thing that has no logo.', x: [
+    'The icon is drawn on a 24 by 24 grid.',
+    'A page adds its own icon with ExDraw.icons.']},
+  'd.phone': {t: 'Phone', l: 'ICON', d: 'The phone stands for the 390 pixel check width.', x: [
+    'scripts/check opens every page at 390 and 1280 pixels.',
+    'A wide figure scrolls inside its card on a phone.']},
+  'r.core': {t: 'One bad token', l: 'IMPACT', d: 'The point of impact is where the failure starts.', x: [
+    'Here a wrong colour token is the example failure.',
+    'Rings spread out to show how far it reaches.']},
+  'r.1': {t: 'Every figure', l: 'RING', d: 'Every figure on the page reads the token.', x: ['A solid red ring means the reach is confirmed.']},
+  'r.2': {t: 'Every theme', l: 'RING', d: 'Other themes set their own value for the token.', x: ['A dashed ring means not reached.']},
+  'r.3': {t: 'Other pages', l: 'RING', d: 'Other pages hold their own copy of the kit.', x: ['A dashed ring means not reached.']}
+});
+(function () {
+  var D = ExDraw, b = '';
+  /* the page: a sheet with lines and one chart */
+  b += D.hit('d.page', '<rect class="ex-box ex-box--key" x="380" y="70" width="200" height="250" rx="10"/>' +
+    '<rect class="ex-box" x="404" y="96" width="152" height="70" rx="6"/>' + D.icon('vault', 466, 116, 30, 'key') +
+    '<path class="ex-lead" d="M404 190h152M404 208h120M404 226h140"/>' +
+    '<rect class="ex-solid" x="404" y="270" width="18" height="30" rx="2"/><rect class="ex-solid--key" x="428" y="252" width="18" height="48" rx="2"/><rect class="ex-solid--alt" x="452" y="262" width="18" height="38" rx="2"/>' +
+    D.t(480, 350, 'One page', 'ex-t', 'middle') + D.t(480, 368, 'bundled, works offline', 'ex-ts', 'middle'));
+  var kit = [['d.tokens', 'gear', 'tokens.css', 60], ['d.charts', 'gauge', 'charts.js', 150], ['d.draw', 'spark', 'draw.js', 240], ['d.runtime', 'terminal', 'explainer.js', 330]];
+  kit.forEach(function (k, i) {
+    var y = k[3], key = k[0] === 'd.draw';
+    b += D.arrow('M184 ' + y + ' C 270 ' + y + ', 290 ' + (150 + i * 30) + ', 376 ' + (150 + i * 30), {id: 'kf' + i, tone: key ? 'key' : ''});
+    b += D.dots('kf' + i, 2, 2.6 + i * 0.3, key ? 'key' : '');
+    b += D.hit(k[0], '<circle class="ex-disc' + (key ? ' ex-disc--key' : '') + '" cx="150" cy="' + y + '" r="26"/>' + D.icon(k[1], 136, y - 14, 28, key ? 'key' : '') + D.t(112, y + 4, k[2], 'ex-tl', 'end'));
+  });
+  b += D.arrow('M584 150 C 660 120, 700 100, 742 96', {id: 'out1'}) + D.arrow('M584 200 C 660 200, 700 200, 742 200') + D.arrow('M584 250 C 660 280, 700 300, 742 304', {tone: 'off'});
+  b += D.dots('out1', 2, 2.4);
+  b += D.logo(790, 96, {r: 30, src: GITHUB_LOGO, ex: 'd.repo', title: 'Repository', sub: 'logo plate'});
+  b += D.badge(790, 200, {r: 30, icon: 'globe', ex: 'd.browser', title: 'Browser', sub: 'icon disc'});
+  b += D.badge(790, 304, {r: 30, icon: 'phone', tone: 'off', ex: 'd.phone', title: 'Phone', sub: 'dashed: checked, not used'});
+  b += D.stamp(20, 30, 'SYNTHETIC') + D.t(130, 30, 'The kit files flow into one page', 'ex-ts');
+  D.svg(document.getElementById('fig-drawn'), 900, 390, b, 'Four kit files flow into one page, which goes to a repository, a browser and a phone', 700);
+  D.svg(document.getElementById('fig-rings'), 760, 330, D.rings(170, 165, [
+    {r: 80, ex: 'r.1', title: 'Every figure', sub: 'reached', hit: true},
+    {r: 118, ex: 'r.2', title: 'Every theme', sub: 'not reached'},
+    {r: 156, ex: 'r.3', title: 'Other pages', sub: 'not reached'}
+  ], {r: 40, ex: 'r.core', icon: 'warn', title: 'bad token'}), 'Blast radius of one bad colour token', 620);
+})();
 </script>
 <script src="../kit/explainer.js"></script>
 </body>
