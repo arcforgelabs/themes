@@ -127,6 +127,34 @@
 .ex-figure svg *:not(.ex-hot) { pointer-events: none; }
 .ex-figure svg .ex-hot { pointer-events: all; }
 
+/* Hand-drawn figures (kit/draw.js, references/creative.md). Tones: plain, --key (the one red thing), --alt, --off (dashed). */
+.ex-figure svg .ex-hit, .ex-figure svg .ex-hit * { pointer-events: visiblePainted; }
+.ex-hit { cursor: pointer; outline: none; }
+.ex-hit:hover .ex-disc, .ex-hit:hover .ex-plate, .ex-hit:hover .ex-box, .ex-hit:hover .ex-ring { stroke-width: 2.5; }
+.ex-hit:focus-visible .ex-disc, .ex-hit:focus-visible .ex-plate, .ex-hit:focus-visible .ex-box { stroke: var(--ring); stroke-width: 3; }
+.ex-ic { fill: none; stroke: var(--text-strong); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ex-ic--key { stroke: var(--accent); } .ex-ic--alt { stroke: var(--accent-2); }
+.ex-disc { fill: var(--card); stroke: var(--border-strong); stroke-width: 1.5; }
+.ex-disc--key { fill: var(--accent-subtle); stroke: var(--accent); }
+.ex-disc--alt { fill: var(--accent-2-subtle); stroke: var(--accent-2); }
+.ex-disc--off { stroke-dasharray: 4 3; }
+/* Logos are drawn for a light ground: the plate stays light in dark mode. */
+.ex-plate { fill: var(--card); stroke: var(--border-strong); stroke-width: 1.5; }
+@media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) .ex-plate { fill: var(--text-strong); } }
+:root[data-theme="dark"] .ex-plate { fill: var(--text-strong); }
+.ex-plate--key { stroke: var(--accent); stroke-width: 2.5; }
+.ex-plate--off { stroke-dasharray: 4 3; }
+.ex-dot { fill: var(--muted); } .ex-dot--key { fill: var(--accent); } .ex-dot--alt { fill: var(--accent-2); }
+.ex-lead { stroke: var(--border-strong); stroke-width: 1; fill: none; }
+.ex-ring { fill: none; stroke-width: 2; }
+.ex-ring--hit { stroke: var(--accent); fill: var(--accent-subtle); }
+.ex-ring--safe { stroke: var(--border-strong); stroke-dasharray: 6 5; }
+.ex-core { fill: var(--accent-subtle); stroke: var(--accent); stroke-width: 2; }
+.ex-wall { fill: none; stroke: var(--accent); stroke-width: 7; stroke-dasharray: 2 6; stroke-linecap: round; }
+.ex-stamp rect { fill: none; stroke: var(--accent); stroke-width: 2; }
+.ex-stamp-t { fill: var(--accent); font: 600 12px var(--font-mono); letter-spacing: .12em; }
+.ex-solid { fill: var(--text-strong); } .ex-solid--key { fill: var(--accent); } .ex-solid--alt { fill: var(--accent-2); }
+
 /* Diagram colour key boxes (charts.js layer "k-stock", "k-conf", …). Use one family per page: plain/key/alt/off, or the key. */
 .ex-box--k-stock{fill:color-mix(in srgb,var(--key-stock) 14%,var(--card));stroke:var(--key-stock);stroke-width:1.5}
 .ex-box--k-conf{fill:color-mix(in srgb,var(--key-conf) 14%,var(--card));stroke:var(--key-conf);stroke-width:1.5}

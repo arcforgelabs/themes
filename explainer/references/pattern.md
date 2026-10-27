@@ -15,7 +15,8 @@ Reference page: `references/chart-lab.html`. Start a new page from `examples/sta
 
 ## Choose the views (critical)
 
-- Default to a **ConnectionDiagram**: parts as boxes, joined by labelled arrows. Most explainers show how pieces fit together, and only connections show that.
+- **Draw the hero by hand** as the subject's own real-world shape, with icons, logos and moving dots (`references/creative.md`, `kit/draw.js`). A kit box diagram is never the opening figure.
+- In later sections, default to a **ConnectionDiagram**: parts joined by labelled arrows. Most explainers show how pieces fit together, and only connections show that. Give each part its icon or logo.
 - Each arrow names what moves along it. A box with no arrow is a sign of a missing connection.
 - Use another kind when the subject needs it. Pick by the question the section answers:
   - How do the parts fit together? A ConnectionDiagram or a container diagram.
