@@ -26,6 +26,7 @@ All paths are relative to this skill folder.
 | --- | --- |
 | `references/pattern.md` | The page rules. Read it first, every time. |
 | `references/creative.md` | The creative bar: the first-draft rule, 14 figure patterns, logos, icons, live data charts and the creative check. Read it before you draw. |
+| `references/ste.md` | The Simplified Technical English rules: sentence limits, verb forms, word swaps and a check list. |
 | `references/charts.md` | Every rated chart kind, its tier and its note. Pick a chart from it. |
 | `references/chart-lab.html` | Chart Lab: every rated chart kind drawn on one subject. Copy a hand-drawn vector graphic from it when `kit/charts.js` has no renderer. |
 | `kit/tokens.css` | The token contract, with the Arc Forge values (the fallback theme), light and dark, and the diagram colour key. |
@@ -113,7 +114,7 @@ The source page is the same everywhere. Only the delivery changes.
 ## Words
 
 - Visuals first. Add words only where they help.
-- One fact per sentence. Use Simplified Technical English (ASD-STE100): short sentences and common words. Australian spelling. Each main item still needs about 4 to 8 substantive facts.
+- One fact per sentence. Use Simplified Technical English (ASD-STE100) as `references/ste.md` sets out: word limits, approved verb forms and approved words. Australian spelling. Each main item still needs about 4 to 8 substantive facts.
 - No acronyms. Write the full words in page text, titles, labels, and pop-ups. Where knowing the short form helps, write it once in brackets after the full term, for example "Web Content Accessibility Guidelines (WCAG)". Then keep using the full term.
 - No preamble, no "This diagram shows…", no slogans.
 - No project chatter, internal ids or customer data on a page. Each page stands alone.

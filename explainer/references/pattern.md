@@ -49,7 +49,7 @@ Reference page: `references/chart-lab.html`. Start a new page from `examples/sta
 ## Words
 
 - Diagrams and visual parts first. Add words only where they help.
-- One fact per sentence. Use Simplified Technical English (ASD-STE100): short sentences and common words. Australian spelling.
+- One fact per sentence. Use Simplified Technical English (ASD-STE100) as `ste.md` sets out: 20 words or fewer in an instruction, 25 in a description, approved verb forms and approved words. Australian spelling.
 - Simple English means short sentences and common words. Each main item still needs about 4 to 8 substantive facts.
 - No acronyms. Write the full words in page text, titles, labels, and pop-ups. Where knowing the short form helps, write it once in brackets after the full term, for example "Web Content Accessibility Guidelines (WCAG)". Then keep using the full term.
 - Text longer than one sentence goes behind progressive disclosure: a DetailPopover or a FactsList. Never show it open on the page.
