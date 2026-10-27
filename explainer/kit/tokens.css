@@ -2,7 +2,7 @@
    Pages and chart code hold no literal colours (scripts/check fails on one).
    The values here are Arc Forge: the Knot values of the Arc Forge Design System (tokens.json), except dark --accent
    (#e7364b, not #e5243b) and dark --on-accent (dark ink): the Knot red reads at 4.17:1 as small text on the dark
-   card, and WCAG AA needs 4.5:1; white on the lighter red is 4.18:1. Arc Forge is
+   card, and Web Content Accessibility Guidelines (WCAG), level AA, needs 4.5:1; white on the lighter red is 4.18:1. Arc Forge is
    the fallback theme: a page shows it when no other theme is chosen, and before the runtime starts.
    kit/themes.js holds the other themes as token sets with the same names (scripts/sync-themes writes it).
 
