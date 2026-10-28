@@ -33,7 +33,7 @@ These values have contrast on the Maia Rose surfaces in both modes. Add them nex
 :root {
   --key-stock: oklch(0.55 0.12 150);
   --key-conf: oklch(0.52 0.12 240);
-  --key-exp: oklch(0.70 0.15 90);
+  --key-exp: oklch(0.64 0.15 90);
   --key-ours: oklch(0.64 0.17 50);
   --key-risk: oklch(0.55 0.22 25);
   --key-outside: oklch(0.60 0.01 60);
