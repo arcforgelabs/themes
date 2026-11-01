@@ -37,7 +37,7 @@
   },
   "install": "npx shadcn@latest apply --preset bJy2uzsR",
   "create": "https://ui.shadcn.com/create?preset=bJy2uzsR",
-  "generated": "2026-11-01T02:41:18Z",
+  "generated": "2026-11-01T02:43:16Z",
   "pickable": true,
   "summary": "Maia stone/teal with bundled OpenDyslexic body and headings; a reading preference, not a treatment.",
   "contrastExceptions": {

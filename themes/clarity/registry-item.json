@@ -3,7 +3,7 @@
   "name": "clarity",
   "type": "registry:theme",
   "title": "Clarity",
-  "description": "Clarity: shadcn preset bJy2uzsR. For bundled typography apply tokens.css and retain fonts/OFL.txt; the preset alone does not install it.",
+  "description": "Clarity: shadcn preset bJy2uzsR. For bundled application typography apply typography.css and retain fonts/OFL.txt; the preset alone does not install it.",
   "cssVars": {
     "light": {
       "background": "oklch(1 0 0)",

@@ -92,7 +92,7 @@ Clarity pairs the Maia stone/teal shadcn preset with bundled OpenDyslexic for a 
 
 ## Install and provenance
 
-Apply the palette, components and icons with `npx shadcn@latest apply --preset bJy2uzsR`. Then load this theme's generated `tokens.css` after the application theme. The preset alone installs IBM Plex Sans, not OpenDyslexic. The generated CSS embeds unmodified regular and bold WOFF2 bytes; retain `fonts/OFL.txt` when distributing it. See `fonts/font.json` for the immutable upstream commit and SHA256 checksums. Do not use a local-font or third-party font-server dependency.
+Apply the palette, components and icons with `npx shadcn@latest apply --preset bJy2uzsR`. Then load this theme's generated `typography.css` after the application theme. This file adds font faces and type variables only, so the application retains its palette and mode owner (`.dark` or its existing mode mechanism). Use the full `tokens.css` only for standalone HTML, with its documented `data-theme` light/dark/auto selectors. The preset alone installs IBM Plex Sans, not OpenDyslexic. The generated CSS embeds unmodified regular and bold WOFF2 bytes; retain `fonts/OFL.txt` when distributing it. See `fonts/font.json` for the immutable upstream commit and SHA256 checksums. Do not use a local-font or third-party font-server dependency.
 
 ## Colors
 

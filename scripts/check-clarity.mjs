@@ -28,7 +28,8 @@ try {
   }
   for (const selector of ['#body', '#heading', '#bold', '#open']) {
     const actual = await fonts(selector); results.fonts[selector] = actual;
-    assert(actual.some(f => f.isCustomFont && /OpenDyslexic/.test(f.familyName) && f.glyphCount > 0), selector + ': actual custom glyph face');
+    const face = ['#heading', '#bold'].includes(selector) ? 'OpenDyslexic-Bold' : 'OpenDyslexic-Regular';
+    assert(actual.some(f => f.isCustomFont && f.postScriptName === face && f.glyphCount > 0), selector + ': actual ' + face + ' glyph face');
   }
   results.fonts.mono = await fonts('#mono');
   assert(!results.fonts.mono.some(f => /OpenDyslexic/.test(f.familyName)), 'intentional mono retained');
@@ -61,6 +62,18 @@ try {
   await page.screenshot({ path: path.join(out, '320-spacing-200.png'), fullPage: true });
   assert.deepEqual(requests, [], 'offline font rendering without external requests');
   await context.close();
+  // Application font import must not compete with shadcn's existing palette/mode owner.
+  const app = await browser.newContext();
+  const appPage = await app.newPage();
+  const typography = await fs.readFile(path.join(dir, 'typography.css'), 'utf8');
+  await appPage.setContent('<style>:root{--background:white;--foreground:black}.dark{--background:black;--foreground:white}</style><style>' + typography + '</style><p>Application type</p>');
+  await appPage.emulateMedia({colorScheme:'light'});
+  await appPage.evaluate(() => document.documentElement.className = 'dark');
+  assert.equal(await appPage.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--background').trim()), 'black', 'application explicit dark retained');
+  await appPage.emulateMedia({colorScheme:'dark'});
+  await appPage.evaluate(() => document.documentElement.className = '');
+  assert.equal(await appPage.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--background').trim()), 'white', 'application explicit light retained');
+  await app.close();
   const blocked = await browser.newContext();
   const fallback = await blocked.newPage();
   await fallback.setContent(html.replace('<link rel="stylesheet" href="tokens.css">', `<meta http-equiv="Content-Security-Policy" content="font-src 'none'"><style>` + css + '</style>'));

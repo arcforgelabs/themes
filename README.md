@@ -20,7 +20,7 @@ Use the first source that exists. Stop at that source.
 **In a repo.** Record the theme so the next agent finds it at step 2:
 
 1. Apply the preset. In a new shadcn project, run `npx shadcn@latest init --preset <code>`. In an existing one, run `npx shadcn@latest apply --preset <code>`.
-2. Copy `themes/<slug>/DESIGN.md` to the repo root as `DESIGN.md`. Follow its font instructions: Clarity additionally needs its generated `tokens.css` after the application theme and the bundled `fonts/OFL.txt`; the shadcn preset alone does not install OpenDyslexic.
+2. Copy `themes/<slug>/DESIGN.md` to the repo root as `DESIGN.md`. Follow its font instructions: Clarity additionally needs its generated `typography.css` after the application theme (font faces/type variables only; preserves the application mode owner) and the bundled `fonts/OFL.txt`; the shadcn preset alone does not install OpenDyslexic.
 
 **In standalone HTML** (an artifact, a report, a slide): copy `themes/<slug>/tokens.css` into the page, including any `@font-face` rules, the light block and both dark blocks. Follow the font note in the file's second line. Clarity embeds its licensed WOFF2 faces in the CSS; retain `themes/clarity/fonts/OFL.txt` alongside distributed copies.
 
@@ -35,7 +35,7 @@ Use the first source that exists. Stop at that source.
 | Theme | Preset | Look | Install |
 | --- | --- | --- | --- |
 | [Maia Rose](themes/maia-rose/DESIGN.md) (default) | `b4W4Iv9tfn` | Soft and rounded. Stone neutrals, one rose accent, Merriweather headings over IBM Plex Sans, Remix icons. | `npx shadcn@latest apply --preset b4W4Iv9tfn` |
-| [Clarity](themes/clarity/DESIGN.md) | `bJy2uzsR` + bundled typography | Maia stone/teal, medium radius, OpenDyslexic body and headings. Reading preference, not a treatment claim. | Apply preset, then load `themes/clarity/tokens.css` and retain `fonts/OFL.txt`. |
+| [Clarity](themes/clarity/DESIGN.md) | `bJy2uzsR` + bundled typography | Maia stone/teal, medium radius, OpenDyslexic body and headings. Reading preference, not a treatment claim. | Apply preset, then load `themes/clarity/typography.css` and retain `fonts/OFL.txt`. |
 
 Preview or change a preset at `https://ui.shadcn.com/create?preset=<code>`.
 

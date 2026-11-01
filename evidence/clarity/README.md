@@ -18,6 +18,10 @@ Screenshots: width-mode.png uses that CSS viewport width × 1000px, full-page ca
 
 One optional font manifest extends the existing add-theme owner, with no second registry, font server, local-font probe, package dependency or new install command. Palette/shape remain upstream-owned. The necessary growth is exact font/licence bytes, generation, usage rules and one browser boundary test. No tools, Arc Forge fallback, OpenClaw core/config or public explainer export was edited.
 
+## Independent review
+
+Reviewer session 3908a0cb-eead-400d-9341-808a72499dca independently verified upstream tokens, font/licence bytes and glyph-test design. One P2 found: loading standalone CSS after a shadcn app competes with `.dark` mode ownership. Fixed with generated typography.css (faces/type variables only), corrected instructions, and a browser regression for explicit app dark/system light and app light/system dark. Strengthened real-bold proof to require OpenDyslexic-Bold PostScript face, not synthesised regular. Browser proof remains an explicit local check; existing CI checks assets/generated CSS/lint/contrast.
+
 ## Import handoff
 
 The tools importer must consume `themes/clarity/tokens.css` INCLUDING its two @font-face rules, and carry `themes/clarity/fonts/OFL.txt` into generated bundles/packages alongside the embedded bytes. Its variable mapper should map font-sans to font-body and font-heading to font-display, without replacing intentional mono. An importer that extracts only root variables will lose glyph delivery. Do not route OpenDyslexic through Google Fonts. Preserve explicit picks/saved defaults and light/dark/auto; retain Arc Forge as a separate unchanged theme. Wait for the reviewed source merge and pin its exact SHA before final integration/release.

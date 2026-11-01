@@ -243,13 +243,16 @@ def main() -> None:
     old.write_text(json.dumps(theme, indent=2) + "\n", encoding="utf-8")
 
     (out / "tokens.css").write_text(tokens_css(args.name, args.code, light, dark, fonts, faces), encoding="utf-8")
+    if custom_font:
+        typography = faces + '\n\n:root { --font-sans: "' + custom_font["family"] + '", ui-sans-serif, system-ui, sans-serif; --font-heading: var(--font-sans); }\n'
+        (out / "typography.css").write_text(typography, encoding="utf-8")
     registry_item = {
         "$schema": "https://ui.shadcn.com/schema/registry-item.json",
         "name": args.slug,
         "type": "registry:theme",
         "title": args.name,
         "description": (f"{args.name}: shadcn preset {args.code}. "
-                        + ("For bundled typography apply tokens.css and retain fonts/OFL.txt; the preset alone does not install it."
+                        + ("For bundled application typography apply typography.css and retain fonts/OFL.txt; the preset alone does not install it."
                            if custom_font else f"For the full style, fonts and icons use `{theme['install']}`.")),
         "cssVars": {"light": light, "dark": dark},
     }
