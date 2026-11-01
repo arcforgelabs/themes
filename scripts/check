@@ -53,6 +53,11 @@ for theme_dir in themes:
     for key in REQUIRED_KEYS:
         if key not in theme:
             failures.append(f"{slug}: theme.json has no '{key}'")
+    font_metadata, faces = None, ""
+    try:
+        font_metadata, faces = add_theme.bundled_font(theme_dir)
+    except (ValueError, OSError, KeyError) as error:
+        failures.append(f"{slug}: {error}")
     lint = subprocess.run(["npx", "-y", "@google/design.md@0.4.0", "lint", str(theme_dir / "DESIGN.md")],
                           capture_output=True, text=True)
     try:
@@ -62,6 +67,11 @@ for theme_dir in themes:
     if errors:
         failures.append(f"{slug}: DESIGN.md lint errors: {errors}")
     css_vars = json.loads((theme_dir / "registry-item.json").read_text(encoding="utf-8"))["cssVars"]
+    if font_metadata and faces:
+        expected = add_theme.tokens_css(theme["name"], theme["preset"], css_vars["light"], css_vars["dark"],
+                                        {"sans": font_metadata, "heading": None}, faces)
+        if (theme_dir / "tokens.css").read_text(encoding="utf-8") != expected:
+            failures.append(f"{slug}: regenerate tokens.css to deliver the verified bundled font")
     for mode in ("light", "dark"):
         tokens = css_vars[mode]
         for fg, bg in TEXT_PAIRS:
