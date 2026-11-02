@@ -26,10 +26,14 @@ try {
     const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector });
     return (await cdp.send('CSS.getPlatformFontsForNode', { nodeId })).fonts;
   }
-  for (const selector of ['#body', '#heading', '#bold', '#open']) {
+  // Reading text gets OpenDyslexic; headings, controls and labels keep the standard face.
+  for (const [selector, face] of [['#body', 'OpenDyslexic-Regular'], ['#bold', 'OpenDyslexic-Bold']]) {
     const actual = await fonts(selector); results.fonts[selector] = actual;
-    const face = ['#heading', '#bold'].includes(selector) ? 'OpenDyslexic-Bold' : 'OpenDyslexic-Regular';
     assert(actual.some(f => f.isCustomFont && f.postScriptName === face && f.glyphCount > 0), selector + ': actual ' + face + ' glyph face');
+  }
+  for (const selector of ['#heading', '#open', '#label']) {
+    const actual = await fonts(selector); results.fonts[selector] = actual;
+    assert(actual.length && !actual.some(f => /OpenDyslexic/.test(f.familyName)), selector + ': standard face, not OpenDyslexic');
   }
   results.fonts.mono = await fonts('#mono');
   assert(!results.fonts.mono.some(f => /OpenDyslexic/.test(f.familyName)), 'intentional mono retained');
@@ -66,7 +70,8 @@ try {
   const app = await browser.newContext();
   const appPage = await app.newPage();
   const typography = await fs.readFile(path.join(dir, 'typography.css'), 'utf8');
-  await appPage.setContent('<style>:root{--background:white;--foreground:black}.dark{--background:black;--foreground:white}</style><style>' + typography + '</style><p>Application type</p>');
+  await appPage.setContent('<style>:root{--background:white;--foreground:black;--font-sans:AppSans}.dark{--background:black;--foreground:white}</style><style>' + typography + '</style><p>Application type</p>');
+  assert.equal(await appPage.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim()), 'AppSans', 'application standard font retained');
   await appPage.emulateMedia({colorScheme:'light'});
   await appPage.evaluate(() => document.documentElement.className = 'dark');
   assert.equal(await appPage.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--background').trim()), 'black', 'application explicit dark retained');
@@ -85,5 +90,5 @@ try {
   assert(results.blockedFonts.some(f => !f.isCustomFont && f.glyphCount > 0), 'blocked font remains readable');
   await blocked.close();
   await fs.writeFile(path.join(out, 'browser-result.json'), JSON.stringify(results, null, 2) + '\n');
-  console.log('PASS Clarity: offline actual glyphs, 8 light/dark viewports, mode, popup, mono, fallback, 200% text/spacing');
+  console.log('PASS Clarity: offline actual glyphs (reading text OpenDyslexic, headings/controls/labels standard), 8 light/dark viewports, mode, popup, mono, fallback, 200% text/spacing');
 } finally { await browser.close(); }

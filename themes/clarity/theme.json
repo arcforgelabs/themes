@@ -17,9 +17,16 @@
   },
   "fonts": {
     "sans": {
-      "family": "OpenDyslexic",
+      "family": "IBM Plex Sans",
       "generic": "sans-serif",
       "variable": "--font-sans",
+      "package": "@fontsource-variable/ibm-plex-sans"
+    },
+    "heading": null,
+    "reading": {
+      "family": "OpenDyslexic",
+      "generic": "sans-serif",
+      "variable": "--font-reading",
       "manifest": "fonts/font.json",
       "licence": {
         "path": "fonts/OFL.txt",
@@ -32,14 +39,13 @@
         "directory": "compiled",
         "modification": "none"
       }
-    },
-    "heading": null
+    }
   },
   "install": "npx shadcn@latest apply --preset bJy2uzsR",
   "create": "https://ui.shadcn.com/create?preset=bJy2uzsR",
-  "generated": "2026-11-01T02:43:16Z",
+  "generated": "2026-11-02T14:12:23Z",
   "pickable": true,
-  "summary": "Maia stone/teal with bundled OpenDyslexic body and headings; a reading preference, not a treatment.",
+  "summary": "Maia stone/teal with bundled OpenDyslexic for paragraphs and lists, and the preset IBM Plex Sans for headings and structure; a reading preference, not a treatment.",
   "contrastExceptions": {
     "light:muted-foreground/muted": "4.39:1. DESIGN.md excludes text on muted fills.",
     "light:sidebar-primary-foreground/sidebar-primary": "3.52:1. DESIGN.md restricts sidebar-primary to a marker, not text fill."

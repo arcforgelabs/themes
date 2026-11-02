@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-01T02:43:20.847Z",
-  "browser": "156.0.8078.79",
+  "date": "2026-11-02T14:13:09.608Z",
+  "browser": "153.0.8010.12",
   "platform": "linux",
   "fonts": {
     "#body": [
@@ -8,15 +8,7 @@
         "familyName": "OpenDyslexic",
         "postScriptName": "OpenDyslexic-Regular",
         "isCustomFont": true,
-        "glyphCount": 101
-      }
-    ],
-    "#heading": [
-      {
-        "familyName": "OpenDyslexic",
-        "postScriptName": "OpenDyslexic-Bold",
-        "isCustomFont": true,
-        "glyphCount": 19
+        "glyphCount": 126
       }
     ],
     "#bold": [
@@ -27,12 +19,28 @@
         "glyphCount": 31
       }
     ],
+    "#heading": [
+      {
+        "familyName": "Inter",
+        "postScriptName": "Inter-Bold",
+        "isCustomFont": false,
+        "glyphCount": 19
+      }
+    ],
     "#open": [
       {
-        "familyName": "OpenDyslexic",
-        "postScriptName": "OpenDyslexic-Regular",
-        "isCustomFont": true,
+        "familyName": "Inter",
+        "postScriptName": "Inter-Regular",
+        "isCustomFont": false,
         "glyphCount": 18
+      }
+    ],
+    "#label": [
+      {
+        "familyName": "Inter",
+        "postScriptName": "Inter-Regular",
+        "isCustomFont": false,
+        "glyphCount": 17
       }
     ],
     "mono": [
@@ -116,10 +124,10 @@
   ],
   "blockedFonts": [
     {
-      "familyName": "DejaVu Sans",
-      "postScriptName": "DejaVuSans",
+      "familyName": "Inter",
+      "postScriptName": "Inter-Regular",
       "isCustomFont": false,
-      "glyphCount": 102
+      "glyphCount": 127
     }
   ]
 }
