@@ -33,4 +33,4 @@ The prose tells an agent how to use the tokens. It names tokens, gives rules in 
 
 ## Source of values
 
-Values come from the shadcn preset through `scripts/add-theme`. Do not edit generated files or the `DESIGN.md` front matter by hand. Change the preset and regenerate.
+Palette and shape values come from the shadcn preset through `scripts/add-theme`. A theme may add a source-owned `fonts/font.json` manifest for bundled typography unavailable in shadcn. It records the real family, upstream commit, unmodified WOFF2 paths/weights/hashes and matching licence path/hash. The generator verifies those bytes and embeds font faces in standalone `tokens.css` and application-only `typography.css` (no palette/mode selectors); the metadata and DESIGN.md must distinguish this adaptation from the preset. Retain the licence with redistributed CSS. The preset-only registry item remains palette/shape-only and says so. Do not edit generated files or the `DESIGN.md` front matter by hand. Change the preset and regenerate.

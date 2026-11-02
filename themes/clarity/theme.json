@@ -1,0 +1,47 @@
+{
+  "name": "Clarity",
+  "slug": "clarity",
+  "preset": "bJy2uzsR",
+  "base": "radix",
+  "values": {
+    "menuColor": "inverted-translucent",
+    "menuAccent": "subtle",
+    "radius": "medium",
+    "font": "ibm-plex-sans",
+    "iconLibrary": "remixicon",
+    "theme": "teal",
+    "baseColor": "stone",
+    "style": "maia",
+    "chartColor": "stone",
+    "fontHeading": "inherit"
+  },
+  "fonts": {
+    "sans": {
+      "family": "OpenDyslexic",
+      "generic": "sans-serif",
+      "variable": "--font-sans",
+      "manifest": "fonts/font.json",
+      "licence": {
+        "path": "fonts/OFL.txt",
+        "spdx": "OFL-1.1",
+        "sha256": "caafcccfb70fc72458fcbda812ec8f0a06cb300cbabb87eabbb30b946124394b"
+      },
+      "source": {
+        "repository": "https://github.com/antijingoist/opendyslexic",
+        "commit": "1824da5c0e41dc3e13ffc7f3a636dcaf695d61b7",
+        "directory": "compiled",
+        "modification": "none"
+      }
+    },
+    "heading": null
+  },
+  "install": "npx shadcn@latest apply --preset bJy2uzsR",
+  "create": "https://ui.shadcn.com/create?preset=bJy2uzsR",
+  "generated": "2026-11-01T02:43:16Z",
+  "pickable": true,
+  "summary": "Maia stone/teal with bundled OpenDyslexic body and headings; a reading preference, not a treatment.",
+  "contrastExceptions": {
+    "light:muted-foreground/muted": "4.39:1. DESIGN.md excludes text on muted fills.",
+    "light:sidebar-primary-foreground/sidebar-primary": "3.52:1. DESIGN.md restricts sidebar-primary to a marker, not text fill."
+  }
+}

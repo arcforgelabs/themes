@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-01T02:43:20.847Z",
+  "browser": "156.0.8078.79",
+  "platform": "linux",
+  "fonts": {
+    "#body": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Regular",
+        "isCustomFont": true,
+        "glyphCount": 101
+      }
+    ],
+    "#heading": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Bold",
+        "isCustomFont": true,
+        "glyphCount": 19
+      }
+    ],
+    "#bold": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Bold",
+        "isCustomFont": true,
+        "glyphCount": 31
+      }
+    ],
+    "#open": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Regular",
+        "isCustomFont": true,
+        "glyphCount": 18
+      }
+    ],
+    "mono": [
+      {
+        "familyName": "DejaVu Sans Mono",
+        "postScriptName": "DejaVuSansMono",
+        "isCustomFont": false,
+        "glyphCount": 10
+      }
+    ],
+    "fallback": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Regular",
+        "isCustomFont": true,
+        "glyphCount": 29
+      },
+      {
+        "familyName": "Noto Color Emoji",
+        "postScriptName": "NotoColorEmoji",
+        "isCustomFont": false,
+        "glyphCount": 1
+      },
+      {
+        "familyName": "WenQuanYi Zen Hei",
+        "postScriptName": "WenQuanYiZenHei",
+        "isCustomFont": false,
+        "glyphCount": 2
+      }
+    ],
+    "popup": [
+      {
+        "familyName": "OpenDyslexic",
+        "postScriptName": "OpenDyslexic-Regular",
+        "isCustomFont": true,
+        "glyphCount": 75
+      }
+    ]
+  },
+  "cases": [
+    {
+      "width": 320,
+      "mode": "light",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "light",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "mode": "dark",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "light",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "mode": "dark",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "mode": "light",
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "mode": "dark",
+      "overflow": false
+    }
+  ],
+  "blockedFonts": [
+    {
+      "familyName": "DejaVu Sans",
+      "postScriptName": "DejaVuSans",
+      "isCustomFont": false,
+      "glyphCount": 102
+    }
+  ]
+}
