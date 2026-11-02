@@ -18,7 +18,7 @@ The shadcn token set, in light and dark:
 - Charts: `chart-1` to `chart-5`.
 - Sidebar: `sidebar`, `sidebar-foreground`, `sidebar-primary`, `sidebar-primary-foreground`, `sidebar-accent`, `sidebar-accent-foreground`, `sidebar-border`, `sidebar-ring`.
 - Shape: `radius`, with the scale `radius-sm` to `radius-4xl` derived from it.
-- Type: `font-sans`, and `font-heading` when the heading face differs.
+- Type: `font-sans`, and `font-heading` when the heading face differs. A theme with a bundled reading font also sets `font-reading`. It applies only to prose (paragraphs, lists, definitions, quotes). Headings use `font-heading`; controls, labels, tables, charts and diagrams use `font-sans`.
 
 ## Legibility
 

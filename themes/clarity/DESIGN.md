@@ -65,11 +65,11 @@ colors:
   dark-sidebar-border: "#FFFFFF1A"
   dark-sidebar-ring: "#79716B"
 typography:
-  heading: {fontFamily: OpenDyslexic, fontSize: 1.5rem, fontWeight: 700, lineHeight: 2rem}
-  card-title: {fontFamily: OpenDyslexic, fontSize: 1rem, fontWeight: 700, lineHeight: 1.5rem}
+  heading: {fontFamily: IBM Plex Sans, fontSize: 1.5rem, fontWeight: 600, lineHeight: 2rem}
+  card-title: {fontFamily: IBM Plex Sans, fontSize: 1rem, fontWeight: 500, lineHeight: 1.5rem}
   body: {fontFamily: OpenDyslexic, fontSize: 1rem, fontWeight: 400, lineHeight: 1.6rem}
-  label: {fontFamily: OpenDyslexic, fontSize: 0.875rem, fontWeight: 400, lineHeight: 1.25rem}
-  caption: {fontFamily: OpenDyslexic, fontSize: 0.875rem, fontWeight: 400, lineHeight: 1.4rem}
+  label: {fontFamily: IBM Plex Sans, fontSize: 0.875rem, fontWeight: 500, lineHeight: 1.25rem}
+  caption: {fontFamily: IBM Plex Sans, fontSize: 0.875rem, fontWeight: 500, lineHeight: 1.4rem}
 rounded:
   sm: 6px
   md: 8px
@@ -88,11 +88,11 @@ spacing:
 
 ## Overview
 
-Clarity pairs the Maia stone/teal shadcn preset with bundled OpenDyslexic for a distinct reading option. Use it for documents, learning material and explainers. The font is a preference, not a treatment or a promise of better reading performance.
+Clarity pairs the Maia stone/teal shadcn preset with bundled OpenDyslexic for a distinct reading option. OpenDyslexic is for long reading text only: paragraphs and lists. Headings and structured parts keep the preset's IBM Plex Sans. Use it for documents, learning material and explainers. The font is a preference, not a treatment or a promise of better reading performance.
 
 ## Install and provenance
 
-Apply the palette, components and icons with `npx shadcn@latest apply --preset bJy2uzsR`. Then load this theme's generated `typography.css` after the application theme. This file adds font faces and type variables only, so the application retains its palette and mode owner (`.dark` or its existing mode mechanism). Use the full `tokens.css` only for standalone HTML, with its documented `data-theme` light/dark/auto selectors. The preset alone installs IBM Plex Sans, not OpenDyslexic. The generated CSS embeds unmodified regular and bold WOFF2 bytes; retain `fonts/OFL.txt` when distributing it. See `fonts/font.json` for the immutable upstream commit and SHA256 checksums. Do not use a local-font or third-party font-server dependency.
+Apply the palette, components and icons with `npx shadcn@latest apply --preset bJy2uzsR`. Then load this theme's generated `typography.css` after the application theme. This file adds the font faces, the `font-reading` variable and one zero-specificity prose rule only, so the application retains its own `font-sans`, `font-heading`, palette and mode owner (`.dark` or its existing mode mechanism). Use the full `tokens.css` only for standalone HTML, with its documented `data-theme` light/dark/auto selectors. The preset installs IBM Plex Sans for headings and structure; it does not install OpenDyslexic. The generated CSS embeds unmodified regular and bold WOFF2 bytes; retain `fonts/OFL.txt` when distributing it. See `fonts/font.json` for the immutable upstream commit and SHA256 checksums. Do not use a local-font or third-party font-server dependency.
 
 ## Colors
 
@@ -102,9 +102,16 @@ Use `foreground` for control outlines and focus indicators: the preset's decorat
 
 ## Typography
 
-Use `font-sans` for body, controls, diagram labels and pop-ups. Use `font-heading` for headings; it inherits OpenDyslexic. Preserve intentional monospace code and data numerals with the application's mono stack. Do not overwrite mono or purposeful SVG icon fonts.
+Use one font for each role:
 
-Start reading text at 1rem with a 1.6 line height. Keep compact labels at least 0.875rem; avoid the preset's small caption size for essential instructions. Use regular 400 and bold 700, the supplied real faces. Allow system sans-serif fallback for unsupported glyphs or blocked font loading. Do not shrink text to fit a diagram.
+- `font-reading` (OpenDyslexic): paragraphs, list items, definitions and quotes. These are the long runs of text.
+- `font-heading` (IBM Plex Sans): titles and headings.
+- `font-sans` (IBM Plex Sans): structured parts. These are controls, labels, navigation, tables, charts, flow charts, diagram labels and status words.
+- The application's mono stack: code and data numerals.
+
+The generated CSS applies `font-reading` to `p`, `li`, `dd` and `blockquote` with `:where()`, so a component that sets its own font still wins. Do not put OpenDyslexic on a heading, a chart or a diagram. Do not overwrite mono or purposeful SVG icon fonts.
+
+Start reading text at 1rem with a 1.6 line height. Keep compact labels at least 0.875rem; avoid the preset's small caption size for essential instructions. In reading text, use regular 400 and bold 700, the supplied real OpenDyslexic faces. Allow system sans-serif fallback for unsupported glyphs or blocked font loading. Do not shrink text to fit a diagram.
 
 ## Layout
 
@@ -120,7 +127,7 @@ Use the generated medium `radius` scale. Keep the same shape rules in light and 
 
 ## Components
 
-Inherit the reading family in buttons, inputs, tooltips and expanded views. Use a visible foreground outline for keyboard focus. Pair every status colour with words or an icon. Retain light, dark and automatic mode choices; an explicit reader choice wins.
+Use `font-sans` in buttons, inputs, tabs and labels. Use `font-reading` for the prose inside tooltips, pop-ups and expanded views. Use a visible foreground outline for keyboard focus. Pair every status colour with words or an icon. Retain light, dark and automatic mode choices; an explicit reader choice wins.
 
 ## Do's and don'ts
 

@@ -69,7 +69,7 @@ for theme_dir in themes:
     css_vars = json.loads((theme_dir / "registry-item.json").read_text(encoding="utf-8"))["cssVars"]
     if font_metadata and faces:
         expected = add_theme.tokens_css(theme["name"], theme["preset"], css_vars["light"], css_vars["dark"],
-                                        {"sans": font_metadata, "heading": None}, faces)
+                                        {**theme["fonts"], "reading": font_metadata}, faces)
         if (theme_dir / "tokens.css").read_text(encoding="utf-8") != expected:
             failures.append(f"{slug}: regenerate tokens.css to deliver the verified bundled font")
     for mode in ("light", "dark"):

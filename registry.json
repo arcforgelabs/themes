@@ -7,7 +7,7 @@
       "name": "clarity",
       "type": "registry:theme",
       "title": "Clarity",
-      "description": "Clarity: shadcn preset bJy2uzsR. For bundled application typography apply typography.css and retain fonts/OFL.txt; the preset alone does not install it.",
+      "description": "Clarity: shadcn preset bJy2uzsR. For the bundled reading font (paragraphs and lists) apply typography.css and retain fonts/OFL.txt; the preset alone does not install it.",
       "files": [],
       "cssVars": {
         "light": {
