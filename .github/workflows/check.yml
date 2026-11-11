@@ -18,5 +18,8 @@ jobs:
       # Full commit SHA. This org rejects a floating tag such as @v4.
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
+      - name: Test theme generation without network access
+        run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+
       - name: Check every theme against the contract
         run: python3 scripts/check
