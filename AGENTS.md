@@ -17,6 +17,7 @@ Read `VISION.md` before starting work. `README.md` indexes the rest. This file o
 
 `.agents/skills` holds this repo's own skills. Claude Code finds them through `.claude/skills`, a link to `.agents/skills`.
 
+- Base coding skills from upstream OpenClaw: `agent-transcript`, `autoreview`, `pr-simplify`, `technical-documentation`, `test-audit`. Each is a link into the `vendor/openclaw` submodule (openclaw/openclaw), unchanged; Dependabot opens a pull request when upstream changes. Claude Code's `SessionStart` hook in `.claude/settings.json` runs `git submodule update --init vendor/openclaw` when the submodule is empty; other harnesses run it after clone, or the linked skills are missing. `autoreview` installs [openclaw/agent-skills](https://github.com/openclaw/agent-skills) on first use.
 - `arcforge-pr-maintainer` is a copy stamped from the retired Tools repo. It stays until a `<repo>-pr-maintainer` skill replaces it, as [platform-pr-maintainer](https://github.com/arcforgelabs/platform/blob/main/.agents/skills/platform-pr-maintainer/SKILL.md) did in Platform.
 
 ## Read when relevant
